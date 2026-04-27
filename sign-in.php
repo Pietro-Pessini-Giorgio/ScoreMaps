@@ -1,5 +1,5 @@
 <?php 
-    //include connection
+    include "db_connect.php";
     $dat1=$_GET['dat'];
 ?>
 <!DOCTYPE html>
@@ -38,7 +38,7 @@
         
     </form>
     <div class="options">
-        <a href="login.php">effetua il login</a>
+        <a href="http://localhost/ScoreMaps/ScoreMaps/login.php?dat=0">effetua il login</a>
     </div>
 </body>
 </html>
@@ -55,11 +55,11 @@
     $cogn=strtolower($cogn);
     $cogn=ucfirst($cogn);
     if(preg_match("/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i",$pass)){
-        $url="http://localhost/ScoreMaps/ScoreMaps/login.php?dat=2";
+        $url="http://localhost/ScoreMaps/ScoreMaps/sign-in.php?dat=2";
         header('Location: '.$url);
     }else{
         if(preg_match("/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/",$pass)){
-            $url="http://localhost/ScoreMaps/ScoreMaps/login.php?dat=1";
+            $url="http://localhost/ScoreMaps/ScoreMaps/sign-in.php?dat=1";
             header('Location: '.$url);
         }else{
             $email=trim($email);
