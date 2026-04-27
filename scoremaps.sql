@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 22, 2026 alle 11:25
+-- Creato il: Apr 27, 2026 alle 10:21
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -280,6 +280,7 @@ CREATE TABLE `utenti` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `cognome` varchar(100) NOT NULL,
+  `email` varchar(200) NOT NULL DEFAULT '',
   `password` varchar(40) NOT NULL,
   `admin` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -307,7 +308,8 @@ ALTER TABLE `squadra`
 -- Indici per le tabelle `utenti`
 --
 ALTER TABLE `utenti`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
