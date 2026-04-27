@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 27, 2026 alle 10:21
+-- Creato il: Apr 27, 2026 alle 11:46
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -229,7 +229,215 @@ INSERT INTO `risultato` (`id`, `id_squadra1`, `id_squadra2`, `punteggio_sq1`, `p
 (186, 2, 11, 125, 97, 2),
 (187, 6, 4, 79, 98, 4),
 (188, 14, 3, 82, 86, 3),
-(189, 21, 9, 100, 96, 21);
+(189, 21, 9, 100, 96, 21),
+(190, 20, 21, 95, 83, 20),
+(191, 11, 8, 84, 74, 11),
+(192, 4, 2, 85, 90, 2),
+(193, 9, 16, 84, 75, 9),
+(194, 7, 5, 88, 69, 7),
+(195, 1, 14, 95, 81, 1),
+(196, 3, 13, 90, 99, 13),
+(197, 25, 32, 2, 3, 32),
+(198, 35, 34, 1, 3, 34),
+(199, 28, 33, 1, 3, 33),
+(200, 22, 29, 2, 3, 29),
+(201, 30, 23, 3, 0, 30),
+(202, 31, 27, 0, 3, 27),
+(203, 24, 26, 2, 3, 26),
+(204, 34, 22, 3, 1, 34),
+(205, 32, 26, 3, 0, 32),
+(206, 27, 25, 3, 1, 27),
+(207, 24, 35, 0, 3, 35),
+(208, 29, 28, 2, 3, 28),
+(209, 23, 31, 3, 0, 23),
+(210, 33, 30, 3, 2, 33),
+(211, 27, 33, 3, 0, 27),
+(212, 28, 24, 3, 2, 28),
+(213, 25, 23, 3, 2, 25),
+(214, 22, 35, 3, 1, 22),
+(215, 30, 29, 3, 1, 30),
+(216, 31, 32, 0, 3, 32),
+(217, 26, 34, 3, 0, 26),
+(218, 23, 27, 2, 3, 27),
+(219, 33, 25, 3, 0, 33),
+(220, 35, 26, 1, 3, 26),
+(221, 34, 28, 3, 2, 34),
+(222, 29, 31, 3, 0, 29),
+(223, 24, 22, 3, 1, 24),
+(224, 32, 30, 3, 1, 32),
+(225, 26, 22, 2, 3, 22),
+(226, 33, 23, 3, 0, 33),
+(227, 27, 32, 0, 3, 32),
+(228, 31, 34, 0, 3, 34),
+(229, 25, 29, 3, 0, 25),
+(230, 28, 35, 2, 3, 35),
+(231, 30, 24, 3, 0, 30),
+(232, 34, 25, 3, 1, 34),
+(233, 35, 27, 1, 3, 27),
+(234, 32, 33, 3, 1, 32),
+(235, 26, 28, 3, 2, 26),
+(236, 29, 23, 3, 1, 29),
+(237, 22, 30, 0, 3, 30),
+(238, 24, 31, 3, 0, 24),
+(239, 23, 32, 1, 3, 32),
+(240, 30, 35, 3, 0, 30),
+(241, 27, 34, 2, 3, 34),
+(242, 25, 24, 1, 3, 24),
+(243, 29, 33, 1, 3, 33),
+(244, 28, 22, 3, 0, 28),
+(245, 31, 26, 3, 0, 31),
+(246, 33, 24, 3, 0, 33),
+(247, 34, 23, 3, 0, 34),
+(248, 32, 29, 3, 1, 32),
+(249, 35, 25, 3, 1, 35),
+(250, 22, 27, 3, 2, 22),
+(251, 26, 30, 1, 3, 30),
+(252, 28, 31, 3, 1, 28),
+(253, 34, 33, 3, 0, 34),
+(254, 30, 28, 3, 1, 30),
+(255, 25, 26, 3, 0, 25),
+(256, 31, 35, 2, 3, 35),
+(257, 23, 22, 2, 3, 22),
+(258, 27, 29, 3, 2, 27),
+(259, 24, 32, 0, 3, 32),
+(260, 30, 27, 2, 3, 27),
+(261, 32, 34, 3, 1, 32),
+(262, 28, 25, 0, 3, 25),
+(263, 35, 23, 0, 3, 23),
+(264, 26, 33, 0, 3, 33),
+(265, 29, 24, 3, 1, 29),
+(266, 22, 31, 1, 3, 31),
+(267, 27, 24, 3, 0, 27),
+(268, 32, 28, 3, 0, 32),
+(269, 31, 30, 0, 3, 30),
+(270, 25, 22, 3, 1, 25),
+(271, 33, 35, 3, 1, 33),
+(272, 34, 29, 3, 0, 34),
+(273, 23, 26, 3, 2, 23),
+(274, 26, 27, 0, 3, 27),
+(275, 22, 32, 0, 3, 32),
+(276, 35, 29, 2, 3, 29),
+(277, 30, 25, 3, 1, 30),
+(278, 31, 33, 0, 3, 33),
+(279, 28, 23, 0, 3, 23),
+(280, 24, 34, 0, 3, 34),
+(281, 35, 32, 0, 3, 32),
+(282, 34, 30, 3, 0, 34),
+(283, 24, 23, 3, 2, 24),
+(284, 27, 28, 3, 0, 27),
+(285, 25, 31, 3, 1, 25),
+(286, 33, 22, 3, 0, 33),
+(287, 29, 26, 3, 1, 29),
+(288, 32, 25, 3, 2, 32),
+(289, 34, 35, 3, 1, 34),
+(290, 33, 28, 3, 0, 33),
+(291, 29, 22, 3, 2, 29),
+(292, 27, 31, 3, 1, 27),
+(293, 26, 24, 3, 2, 26),
+(294, 23, 30, 2, 3, 30),
+(295, 26, 32, 0, 3, 32),
+(296, 30, 33, 3, 0, 30),
+(297, 25, 27, 2, 3, 27),
+(298, 35, 24, 2, 3, 24),
+(299, 22, 34, 0, 3, 34),
+(300, 28, 29, 1, 3, 29),
+(301, 31, 23, 3, 1, 31),
+(302, 33, 27, 3, 1, 33),
+(303, 29, 30, 3, 1, 29),
+(304, 23, 25, 3, 0, 23),
+(305, 35, 22, 3, 0, 35),
+(306, 24, 28, 2, 3, 28),
+(307, 32, 31, 3, 0, 32),
+(308, 34, 26, 3, 0, 34),
+(309, 31, 29, 0, 3, 29),
+(310, 26, 35, 3, 1, 26),
+(311, 22, 24, 2, 3, 24),
+(312, 27, 23, 3, 2, 27),
+(313, 25, 33, 1, 3, 33),
+(314, 28, 34, 0, 3, 34),
+(315, 30, 32, 3, 1, 30),
+(316, 24, 30, 0, 3, 30),
+(317, 22, 26, 0, 3, 26),
+(318, 29, 25, 3, 0, 29),
+(319, 35, 28, 1, 3, 28),
+(320, 23, 33, 2, 3, 33),
+(321, 34, 31, 3, 0, 34),
+(322, 32, 27, 3, 1, 32),
+(323, 27, 35, 3, 1, 27),
+(324, 31, 24, 2, 3, 24),
+(325, 33, 32, 2, 3, 32),
+(326, 25, 34, 0, 3, 34),
+(327, 30, 22, 3, 0, 30),
+(328, 28, 26, 3, 0, 28),
+(329, 23, 29, 2, 3, 29),
+(330, 26, 31, 0, 3, 31),
+(331, 34, 27, 3, 2, 34),
+(332, 24, 25, 0, 3, 25),
+(333, 35, 30, 1, 3, 30),
+(334, 33, 29, 3, 0, 33),
+(335, 22, 28, 0, 3, 28),
+(336, 32, 23, 3, 0, 32),
+(337, 31, 28, 3, 0, 31),
+(338, 24, 33, 1, 3, 33),
+(339, 25, 35, 2, 3, 35),
+(340, 27, 22, 3, 0, 27),
+(341, 30, 26, 3, 0, 30),
+(342, 23, 34, 0, 3, 34),
+(343, 29, 32, 0, 3, 32),
+(344, 26, 25, 0, 3, 25),
+(345, 35, 31, 0, 3, 31),
+(346, 33, 34, 2, 3, 34),
+(347, 22, 23, 0, 3, 23),
+(348, 28, 30, 0, 3, 30),
+(349, 32, 24, 3, 0, 32),
+(350, 29, 27, 1, 3, 27),
+(351, 23, 35, 3, 1, 23),
+(352, 31, 22, 3, 1, 31),
+(353, 27, 30, 3, 2, 27),
+(354, 25, 28, 1, 3, 28),
+(355, 33, 26, 3, 0, 33),
+(356, 34, 32, 0, 3, 32),
+(357, 24, 29, 1, 3, 29),
+(358, 28, 32, 0, 3, 32),
+(359, 26, 23, 1, 3, 23),
+(360, 22, 25, 3, 1, 22),
+(361, 30, 31, 3, 1, 30),
+(362, 35, 33, 3, 1, 35),
+(363, 29, 34, 0, 3, 34),
+(364, 24, 27, 0, 3, 27),
+(365, 25, 30, 0, 3, 30),
+(366, 32, 22, 3, 1, 32),
+(367, 29, 35, 3, 2, 29),
+(368, 33, 31, 3, 0, 33),
+(369, 23, 28, 3, 2, 23),
+(370, 34, 24, 3, 0, 34),
+(371, 27, 26, 2, 3, 26),
+(372, 31, 25, 2, 3, 25),
+(373, 32, 35, 3, 1, 32),
+(374, 22, 33, 3, 2, 22),
+(375, 28, 27, 1, 3, 27),
+(376, 30, 34, 3, 0, 30),
+(377, 26, 29, 2, 3, 29),
+(378, 23, 24, 2, 3, 24);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `sport`
+--
+
+CREATE TABLE `sport` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `sport`
+--
+
+INSERT INTO `sport` (`id`, `nome`) VALUES
+(1, 'Basket'),
+(2, 'Pallavolo_F');
 
 -- --------------------------------------------------------
 
@@ -240,35 +448,44 @@ INSERT INTO `risultato` (`id`, `id_squadra1`, `id_squadra2`, `punteggio_sq1`, `p
 CREATE TABLE `squadra` (
   `id` int(11) NOT NULL,
   `nome` varchar(200) NOT NULL,
-  `logo` tinytext NOT NULL
+  `logo` tinytext NOT NULL,
+  `id_sport` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `squadra`
 --
 
-INSERT INTO `squadra` (`id`, `nome`, `logo`) VALUES
-(1, 'Virtus Bologna', 'img/bologna.png'),
-(2, 'Olimpia Milano', 'img/milano.png'),
-(3, 'Pallacanestro Brescia', 'img/brescia.png'),
-(4, 'Reyer Venezia', 'img/venezia.png'),
-(5, 'Derthona Basket', 'img/tortona.png'),
-(6, 'Dinamo Sassari', 'img/sassari.png'),
-(7, 'Pallacanestro Reggiana', 'img/reggioemilia.png'),
-(8, 'Aquila Basket Trento', 'img/trento.png'),
-(9, 'Pallacanestro Varese', 'img/varese.png'),
-(10, 'Victoria Libertas Pesaro', 'img/pesaro.png'),
-(11, 'Napoli Basket', 'img/napoli.png'),
-(12, 'New Basket Brindisi', 'img/brindisi.png'),
-(13, 'Universo Treviso Basket', 'img/treviso.png'),
-(14, 'Pallacanestro Trieste', 'img/trieste.png'),
-(15, 'Scafati Basket', 'img/scafati.png'),
-(16, 'Vanoli Cremona', 'img/cremona.png'),
-(17, 'Pistoia Basket 2000', 'img/pistoia.png'),
-(18, 'Scaligera Basket Verona', 'img/verona.png'),
-(19, 'Fortitudo Bologna 103', 'img/fortitudo.png'),
-(20, 'APU Udine', 'img/udine.png'),
-(21, 'Pallacanestro Cantù', 'img/cantu.png');
+INSERT INTO `squadra` (`id`, `nome`, `logo`, `id_sport`) VALUES
+(1, 'Virtus Bologna', 'img/bologna.png', 1),
+(2, 'Olimpia Milano', 'img/milano.png', 1),
+(3, 'Pallacanestro Brescia', 'img/brescia.png', 1),
+(4, 'Reyer Venezia', 'img/venezia.png', 1),
+(5, 'Derthona Basket', 'img/tortona.png', 1),
+(6, 'Dinamo Sassari', 'img/sassari.png', 1),
+(7, 'Pallacanestro Reggiana', 'img/reggioemilia.png', 1),
+(8, 'Aquila Basket Trento', 'img/trento.png', 1),
+(9, 'Pallacanestro Varese', 'img/varese.png', 1),
+(11, 'Napoli Basket', 'img/napoli.png', 1),
+(13, 'Universo Treviso Basket', 'img/treviso.png', 1),
+(14, 'Pallacanestro Trieste', 'img/trieste.png', 1),
+(16, 'Vanoli Cremona', 'img/cremona.png', 1),
+(20, 'APU Udine', 'img/udine.png', 1),
+(21, 'Pallacanestro Cantù', 'img/cantu.png', 1),
+(22, 'Bartoccini-Mc Restauri Perugia', 'img/perugia.png', 2),
+(23, 'Bergamo', 'img/bergamo.png', 2),
+(24, 'Cbf Balducci Hr Macerata', 'img/macerata.png', 2),
+(25, 'Eurotek Laica Uyba', 'img/uyba.png', 2),
+(26, 'Honda Cuneo Granda Volley', 'img/cuneo.png', 2),
+(27, 'Igor Gorgonzola Novara', 'img/novara.png', 2),
+(28, 'Il Bisonte Firenze', 'img/firenze.png', 2),
+(29, 'Megabox Ond. Savio Vallefoglia', 'img/vallefoglia.png', 2),
+(30, 'Numia Vero Volley Milano', 'img/veromilano.png', 2),
+(31, 'Omag-Mt San Giovanni In M.No', 'img/sangiovanni.png', 2),
+(32, 'Prosecco Doc A.Carraro Imoco Conegliano', 'img/conegliano.png', 2),
+(33, 'Reale Mutua Fenera Chieri \'76', 'img/chieri.png', 2),
+(34, 'Savino Del Bene Scandicci', 'img/scandicci.png', 2),
+(35, 'Wash4green Monviso Volley', 'img/monviso.png', 2);
 
 -- --------------------------------------------------------
 
@@ -299,10 +516,17 @@ ALTER TABLE `risultato`
   ADD KEY `vincitore` (`vincitore`);
 
 --
+-- Indici per le tabelle `sport`
+--
+ALTER TABLE `sport`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indici per le tabelle `squadra`
 --
 ALTER TABLE `squadra`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_sport` (`id_sport`);
 
 --
 -- Indici per le tabelle `utenti`
@@ -319,7 +543,13 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `risultato`
 --
 ALTER TABLE `risultato`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=379;
+
+--
+-- AUTO_INCREMENT per la tabella `sport`
+--
+ALTER TABLE `sport`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
@@ -338,6 +568,12 @@ ALTER TABLE `risultato`
   ADD CONSTRAINT `risultato_ibfk_1` FOREIGN KEY (`id_squadra1`) REFERENCES `squadra` (`id`),
   ADD CONSTRAINT `risultato_ibfk_2` FOREIGN KEY (`id_squadra2`) REFERENCES `squadra` (`id`),
   ADD CONSTRAINT `risultato_ibfk_3` FOREIGN KEY (`vincitore`) REFERENCES `squadra` (`id`);
+
+--
+-- Limiti per la tabella `squadra`
+--
+ALTER TABLE `squadra`
+  ADD CONSTRAINT `FK_squadra_sport` FOREIGN KEY (`id_sport`) REFERENCES `sport` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

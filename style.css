@@ -1,16 +1,15 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --bg:        #0a0b0f;
-            --surface:   #13151c;
-            --card:      #1a1d27;
-            --border:    #252836;
-            --accent:    #f5a623;
-            --accent2:   #e03c3c;
-            --text:      #eceef5;
-            --muted:     #7a7f96;
-            --win:       #2dce76;
-            --loss:      #e03c3c;
+            --bg:       #0a0b0f;
+            --surface:  #13151c;
+            --card:     #1a1d27;
+            --border:   #252836;
+            --accent:   #f5a623;
+            --accent-v: #6c63ff;
+            --text:     #eceef5;
+            --muted:    #7a7f96;
+            --win:      #2dce76;
         }
 
         html { scroll-behavior: smooth; }
@@ -23,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* ── HERO ── */
+        /* ── HEADER ── */
         header {
             position: relative;
             padding: 0 2rem;
@@ -37,8 +36,8 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse 60% 80% at 80% 50%, rgba(245,166,35,.12) 0%, transparent 70%),
-                radial-gradient(ellipse 40% 60% at 10% 80%, rgba(224,60,60,.08) 0%, transparent 60%);
+                radial-gradient(ellipse 60% 80% at 80% 50%, rgba(245,166,35,.1) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 10% 80%, rgba(108,99,255,.08) 0%, transparent 60%);
             pointer-events: none;
         }
 
@@ -51,19 +50,15 @@
             padding: 1.4rem 0;
         }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: .8rem;
-        }
+        .logo-area { display: flex; align-items: center; gap: .8rem; }
 
         .logo-ball {
             width: 42px; height: 42px;
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #e07b00);
             border-radius: 50%;
             display: grid; place-items: center;
             font-size: 1.3rem;
-            box-shadow: 0 0 24px rgba(245,166,35,.5);
+            box-shadow: 0 0 24px rgba(245,166,35,.4);
             flex-shrink: 0;
         }
 
@@ -71,10 +66,8 @@
             font-family: 'Bebas Neue', sans-serif;
             font-size: 2rem;
             letter-spacing: .08em;
-            color: var(--text);
             line-height: 1;
         }
-
         .logo-text span { color: var(--accent); }
 
         nav { display: flex; gap: 2rem; }
@@ -87,17 +80,18 @@
             transition: color .2s;
         }
         nav a:hover { color: var(--accent); }
+        nav a.volley:hover { color: var(--accent-v); }
 
-        /* ── HERO BANNER ── */
+        /* ── HERO ── */
         .hero {
             max-width: 1200px;
             margin: auto;
-            padding: 4rem 2rem 3.5rem;
+            padding: 4rem 2rem 3rem;
         }
 
         .hero-label {
             display: inline-block;
-            background: rgba(245,166,35,.15);
+            background: rgba(245,166,35,.12);
             color: var(--accent);
             font-size: .75rem;
             font-weight: 700;
@@ -105,7 +99,7 @@
             text-transform: uppercase;
             padding: .35rem .9rem;
             border-radius: 99px;
-            border: 1px solid rgba(245,166,35,.3);
+            border: 1px solid rgba(245,166,35,.25);
             margin-bottom: 1.4rem;
             animation: fadeUp .6s ease both;
         }
@@ -117,12 +111,7 @@
             letter-spacing: .03em;
             animation: fadeUp .7s .1s ease both;
         }
-
-        .hero h1 em {
-            font-style: normal;
-            color: var(--accent);
-            display: block;
-        }
+        .hero h1 em { font-style: normal; color: var(--accent); display: block; }
 
         .hero-stats {
             display: flex;
@@ -145,13 +134,58 @@
             margin-top: .25rem;
         }
 
-        /* ── LAYOUT PRINCIPALE ── */
+        /* ── SPORT TAB PILLS ── */
+        .sport-tabs {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .sport-pill {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .6rem 1.4rem;
+            border-radius: 99px;
+            font-weight: 700;
+            font-size: .85rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all .2s;
+            background: var(--card);
+            color: var(--muted);
+            user-select: none;
+        }
+
+        .sport-pill.basket.active,
+        .sport-pill.basket:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(245,166,35,.08);
+        }
+
+        .sport-pill.volley.active,
+        .sport-pill.volley:hover {
+            border-color: var(--accent-v);
+            color: var(--accent-v);
+            background: rgba(108,99,255,.08);
+        }
+
+        /* ── SEZIONI SPORT ── */
+        .sport-section { display: none; }
+        .sport-section.active { display: block; }
+
+        /* ── LAYOUT ── */
         .main {
             max-width: 1200px;
             margin: auto;
             padding: 0 2rem 4rem;
             display: grid;
-            grid-template-columns: 1fr 380px;
+            grid-template-columns: 1fr 360px;
             gap: 2rem;
         }
 
@@ -166,14 +200,14 @@
             align-items: center;
             gap: .6rem;
         }
-
         .section-title::before {
             content: '';
             width: 4px; height: 1.1em;
-            background: var(--accent);
             border-radius: 2px;
             display: block;
         }
+        .section-title.basket::before { background: var(--accent); }
+        .section-title.volley::before { background: var(--accent-v); }
 
         /* ── RISULTATI ── */
         .risultati { display: flex; flex-direction: column; gap: .8rem; }
@@ -190,22 +224,11 @@
             transition: border-color .2s, transform .15s;
             animation: fadeUp .5s ease both;
         }
+        .match-card.basket:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .match-card.volley:hover { border-color: var(--accent-v); transform: translateY(-2px); }
 
-        .match-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .team {
-            display: flex;
-            align-items: center;
-            gap: .75rem;
-        }
-
-        .team.right {
-            flex-direction: row-reverse;
-            text-align: right;
-        }
+        .team { display: flex; align-items: center; gap: .75rem; }
+        .team.right { flex-direction: row-reverse; text-align: right; }
 
         .team-logo {
             width: 40px; height: 40px;
@@ -226,11 +249,7 @@
             flex-shrink: 0;
         }
 
-        .team-name {
-            font-weight: 600;
-            font-size: .88rem;
-            line-height: 1.2;
-        }
+        .team-name { font-weight: 600; font-size: .88rem; line-height: 1.2; }
 
         .win-tag {
             font-size: .65rem;
@@ -244,9 +263,7 @@
             margin-top: .25rem;
         }
 
-        .score-center {
-            text-align: center;
-        }
+        .score-center { text-align: center; }
 
         .score {
             font-family: 'Bebas Neue', sans-serif;
@@ -258,22 +275,11 @@
             gap: .5rem;
         }
 
-        .score-sep {
-            color: var(--muted);
-            font-size: 1.4rem;
-        }
+        .score-sep { color: var(--muted); font-size: 1.4rem; }
+        .score-s1, .score-s2 { color: var(--text); }
+        .score-s1.winner, .score-s2.winner { color: var(--win); }
 
-        .score-s1 { color: var(--text); }
-        .score-s2 { color: var(--text); }
-        .score-s1.winner { color: var(--win); }
-        .score-s2.winner { color: var(--win); }
-
-        .match-id {
-            font-size: .7rem;
-            color: var(--muted);
-            margin-top: .3rem;
-            letter-spacing: .04em;
-        }
+        .match-id { font-size: .7rem; color: var(--muted); margin-top: .3rem; letter-spacing: .04em; }
 
         /* ── CLASSIFICA ── */
         .sidebar { display: flex; flex-direction: column; gap: 1.2rem; }
@@ -292,16 +298,15 @@
 
         .rank-row {
             display: grid;
-            grid-template-columns: 28px 40px 1fr auto;
+            grid-template-columns: 28px 36px 1fr auto;
             align-items: center;
             gap: .7rem;
-            padding: .65rem 1.2rem;
+            padding: .6rem 1.2rem;
             border-bottom: 1px solid rgba(37,40,54,.5);
             transition: background .15s;
         }
-
         .rank-row:last-child { border-bottom: none; }
-        .rank-row:hover { background: rgba(245,166,35,.04); }
+        .rank-row:hover { background: rgba(255,255,255,.03); }
 
         .rank-pos {
             font-family: 'Bebas Neue', sans-serif;
@@ -309,8 +314,7 @@
             color: var(--muted);
             text-align: center;
         }
-
-        .rank-pos.top1 { color: var(--accent); }
+        .rank-pos.top1 { color: #f5a623; }
         .rank-pos.top2 { color: #adb5bd; }
         .rank-pos.top3 { color: #a07850; }
 
@@ -332,58 +336,40 @@
         }
 
         .rank-nome {
-            font-size: .85rem;
+            font-size: .82rem;
             font-weight: 600;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        .rank-vic {
-            text-align: right;
-        }
-
+        .rank-vic { text-align: right; }
         .rank-vic-num {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 1.2rem;
-            color: var(--accent);
         }
-
-        .rank-vic-label {
-            font-size: .65rem;
-            color: var(--muted);
-            letter-spacing: .05em;
-        }
+        .rank-vic-num.basket { color: var(--accent); }
+        .rank-vic-num.volley { color: var(--accent-v); }
+        .rank-vic-label { font-size: .65rem; color: var(--muted); letter-spacing: .05em; }
 
         /* ── WIN BAR ── */
         .win-bar-wrap {
-            padding: .3rem 1.2rem .7rem;
+            padding: .2rem 1.2rem .65rem;
             display: flex;
             align-items: center;
             gap: .6rem;
         }
-
         .win-bar-bg {
-            flex: 1;
-            height: 5px;
+            flex: 1; height: 5px;
             background: var(--border);
             border-radius: 99px;
             overflow: hidden;
         }
+        .win-bar-fill { height: 100%; border-radius: 99px; transition: width .5s ease; }
+        .win-bar-fill.basket { background: linear-gradient(90deg, var(--accent), #ffcd6e); }
+        .win-bar-fill.volley { background: linear-gradient(90deg, var(--accent-v), #a89dff); }
 
-        .win-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), #ffcd6e);
-            border-radius: 99px;
-            transition: width .5s ease;
-        }
-
-        .win-pct {
-            font-size: .72rem;
-            color: var(--muted);
-            width: 36px;
-            text-align: right;
-        }
+        .win-pct { font-size: .72rem; color: var(--muted); width: 36px; text-align: right; }
 
         /* ── FOOTER ── */
         footer {
@@ -405,7 +391,6 @@
             .main { grid-template-columns: 1fr; }
             nav { display: none; }
         }
-
         @media (max-width: 600px) {
             .hero h1 { font-size: 3rem; }
             .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
