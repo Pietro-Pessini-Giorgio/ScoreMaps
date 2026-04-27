@@ -1,5 +1,5 @@
 <?php 
-    //include connection
+    include "db_connect.php";
     $dat1=$_GET['dat'];
 ?>
 <!DOCTYPE html>
@@ -40,17 +40,16 @@
     $pass=trim($pass);
     $pass=md5($pass);
 
-    $sql = "SELECT nome FROM users
-    WHERE email LIKE '$email%' AND pass LIKE '$pass%';";
+    $sql = "SELECT nome FROM utenti
+    WHERE email LIKE '$email%' AND password LIKE '$pass%';";
     $resul=$conn->query($sql);
     if($resul->num_rows>0){
         $row = $resul->fetch_assoc();
         $nom=$row['nome'];
         //$_SESSION["ut"]=$nom;
         //setcookie("usern", $nom, time() + (86400 * 5), "/");
-        //$url="http://localhost/ScoreMaps/ScoreMaps/login.php";
+        $url="http://localhost/ScoreMaps/ScoreMaps/login.php?dat=0";
         //header('Location: '.$url);
-        echo $row;
         die();
     }else{
         $url="http://localhost/ScoreMaps/ScoreMaps/login.php?dat=1";
