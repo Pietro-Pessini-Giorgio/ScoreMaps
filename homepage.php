@@ -46,9 +46,12 @@ $classifica_basket = getClassifica($conn, 1);
 $ultimi_volley     = getUltimi($conn, 2);
 $classifica_volley = getClassifica($conn, 2);
 
+// Dati Basket Femminile (id_sport = 3)
+$ultimi_basket_f     = getUltimi($conn, 3);
+$classifica_basket_f = getClassifica($conn, 3);
+
 // Statistiche generali
 $totPartite = $conn->query("SELECT COUNT(*) AS tot FROM risultato")->fetch_assoc()['tot'];
-$totSquadre = $conn->query("SELECT COUNT(*) AS tot FROM squadra")->fetch_assoc()['tot'];
 $totSport   = $conn->query("SELECT COUNT(*) AS tot FROM sport")->fetch_assoc()['tot'];
 ?>
 <!DOCTYPE html>
@@ -60,9 +63,7 @@ $totSport   = $conn->query("SELECT COUNT(*) AS tot FROM sport")->fetch_assoc()['
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        
-    </style>
+
 </head>
 <body>
 
@@ -76,6 +77,7 @@ $totSport   = $conn->query("SELECT COUNT(*) AS tot FROM sport")->fetch_assoc()['
         <nav>
             <a href="#" onclick="showSport('basket')">🏀 Basket</a>
             <a href="#" onclick="showSport('volley')" class="volley">🏐 Pallavolo</a>
+            <a href="#" onclick="showSport('basket-f')" class="basket-f">🏀 Basket F</a>
         </nav>
     </div>
 </header>
@@ -90,10 +92,6 @@ $totSport   = $conn->query("SELECT COUNT(*) AS tot FROM sport")->fetch_assoc()['
             <div class="hstat-label">Partite totali</div>
         </div>
         <div class="hstat">
-            <div class="hstat-num"><?= $totSquadre ?></div>
-            <div class="hstat-label">Squadre</div>
-        </div>
-        <div class="hstat">
             <div class="hstat-num"><?= $totSport ?></div>
             <div class="hstat-label">Sport</div>
         </div>
@@ -104,6 +102,7 @@ $totSport   = $conn->query("SELECT COUNT(*) AS tot FROM sport")->fetch_assoc()['
 <div class="sport-tabs">
     <div class="sport-pill basket active" onclick="showSport('basket')">🏀 Basket</div>
     <div class="sport-pill volley" onclick="showSport('volley')">🏐 Pallavolo Femminile</div>
+    <div class="sport-pill basket-f" onclick="showSport('basket-f')">🏀 Basket Femminile</div>
 </div>
 
 <!-- ══════════ BASKET ══════════ -->
@@ -217,7 +216,6 @@ $totSport   = $conn->query("SELECT COUNT(*) AS tot FROM sport")->fetch_assoc()['
                 </div>
 
                 <div class="score-center">
-                    <!-- In pallavolo i punteggi sono set vinti -->
                     <div class="score">
                         <span class="score-s1 <?= $win1?'winner':'' ?>"><?= $m['punteggio_sq1'] ?></span>
                         <span class="score-sep">–</span>
@@ -279,8 +277,94 @@ $totSport   = $conn->query("SELECT COUNT(*) AS tot FROM sport")->fetch_assoc()['
 </div>
 </div>
 
+<!-- ══════════ BASKET FEMMINILE ══════════ -->
+<div class="sport-section" id="section-basket-f">
+<div class="main">
+
+    <div>
+        <div class="section-title basket-f">Ultimi Risultati – Basket Femminile</div>
+        <div class="risultati">
+            <?php foreach ($ultimi_basket_f as $i => $m):
+                $win1 = ($m['vincitore_nome'] === $m['nome1']);
+                $win2 = ($m['vincitore_nome'] === $m['nome2']);
+            ?>
+            <div class="match-card basket-f" style="animation-delay:<?= $i*.06 ?>s">
+                <div class="team">
+                    <?php if (file_exists($m['logo1'])): ?>
+                        <img class="team-logo" src="<?= htmlspecialchars($m['logo1']) ?>" alt="">
+                    <?php else: ?>
+                        <div class="team-logo-placeholder">🏀</div>
+                    <?php endif; ?>
+                    <div>
+                        <div class="team-name"><?= htmlspecialchars($m['nome1']) ?></div>
+                        <?php if ($win1): ?><div class="win-tag">✓ VITTORIA</div><?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="score-center">
+                    <div class="score">
+                        <span class="score-s1 <?= $win1?'winner basket-f':'' ?>"><?= $m['punteggio_sq1'] ?></span>
+                        <span class="score-sep">–</span>
+                        <span class="score-s2 <?= $win2?'winner basket-f':'' ?>"><?= $m['punteggio_sq2'] ?></span>
+                    </div>
+                    <div class="match-id">Partita #<?= $m['id'] ?></div>
+                </div>
+
+                <div class="team right">
+                    <?php if (file_exists($m['logo2'])): ?>
+                        <img class="team-logo" src="<?= htmlspecialchars($m['logo2']) ?>" alt="">
+                    <?php else: ?>
+                        <div class="team-logo-placeholder">🏀</div>
+                    <?php endif; ?>
+                    <div>
+                        <div class="team-name"><?= htmlspecialchars($m['nome2']) ?></div>
+                        <?php if ($win2): ?><div class="win-tag">✓ VITTORIA</div><?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="section-title basket-f">Classifica Basket Femminile</div>
+        <div class="rank-card">
+            <div class="rank-header">
+                <div class="section-title basket-f" style="margin:0;font-size:1rem;">Per vittorie</div>
+            </div>
+            <?php
+            $maxVic = $classifica_basket_f[0]['vittorie'] ?? 1;
+            foreach ($classifica_basket_f as $pos => $sq):
+                $pct  = $sq['partite'] > 0 ? round(($sq['vittorie']/$sq['partite'])*100) : 0;
+                $barW = $maxVic > 0 ? round(($sq['vittorie']/$maxVic)*100) : 0;
+                $pc   = match($pos){0=>'top1',1=>'top2',2=>'top3',default=>''};
+            ?>
+            <div class="rank-row">
+                <div class="rank-pos <?= $pc ?>"><?= $pos+1 ?></div>
+                <?php if (file_exists($sq['logo'])): ?>
+                    <img class="rank-logo" src="<?= htmlspecialchars($sq['logo']) ?>" alt="">
+                <?php else: ?>
+                    <div class="rank-logo-placeholder">🏀</div>
+                <?php endif; ?>
+                <div class="rank-nome" title="<?= htmlspecialchars($sq['nome']) ?>"><?= htmlspecialchars($sq['nome']) ?></div>
+                <div class="rank-vic">
+                    <div class="rank-vic-num basket-f"><?= $sq['vittorie'] ?></div>
+                    <div class="rank-vic-label">Vinte</div>
+                </div>
+            </div>
+            <div class="win-bar-wrap">
+                <div class="win-bar-bg"><div class="win-bar-fill basket-f" style="width:<?= $barW ?>%"></div></div>
+                <div class="win-pct"><?= $pct ?>%</div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+</div>
+</div>
+
 <footer>
-    &copy; <?= date('Y') ?> ScoreMaps &nbsp;·&nbsp; 🏀 Basket &amp; 🏐 Pallavolo Italiana
+    &copy; <?= date('Y') ?> ScoreMaps &nbsp;·&nbsp; 🏀 Basket &amp; 🏐 Pallavolo &amp; 🏀 Basket Femminile
 </footer>
 
 <script>

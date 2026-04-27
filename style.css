@@ -397,3 +397,13 @@
             .team-name { font-size: .78rem; }
             .score { font-size: 1.6rem; }
         }
+        .basket-f          { color: #e91e8c; }
+        .section-title.basket-f { border-left-color: #e91e8c; }
+        .match-card.basket-f:hover { border-color: #e91e8c; box-shadow: 0 8px 30px rgba(233,30,140,.18); }
+        .score-s1.winner.basket-f,
+        .score-s2.winner.basket-f { color: #e91e8c; }
+        .win-bar-fill.basket-f    { background: linear-gradient(90deg,#e91e8c,#ff6eb4); }
+        .rank-vic-num.basket-f    { color: #e91e8c; }
+        .sport-pill.basket-f      { border-color: #e91e8c; color: #e91e8c; }
+        .sport-pill.basket-f.active,
+        .sport-pill.basket-f:hover { background: #e91e8c; color: #fff; }
