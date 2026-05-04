@@ -21,12 +21,10 @@
             VALUES ('$nom', '$cogn', '$pass',0,'$email')";
 
             if($conn->query($sql)===TRUE){
-                //$_SESSION["ut"]=$nom;
-                //setcookie("usern", $nom, time() + (86400 * 5), "/");
+                //setcookie("usern", $nom, time() + (86400 * 7), "/");
                 $url="http://localhost/ScoreMaps/ScoreMaps/homepage.php";
                 header('Location: '.$url);
-                //die();
-                echo "riuscita";
+                die();
             }else{
                 echo "<br>";
                 echo "connesione fallita".$conn->error;

@@ -14,8 +14,7 @@
     if($resul->num_rows>0){
         $row = $resul->fetch_assoc();
         $nom=$row['nome'];
-        //$_SESSION["ut"]=$nom;
-        //setcookie("usern", $nom, time() + (86400 * 5), "/");
+        //setcookie("usern", $nom, time() + (86400 * 7), "/");
         $url="http://localhost/ScoreMaps/ScoreMaps/homepage.php";
         header('Location: '.$url);
         die();
