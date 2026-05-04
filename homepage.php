@@ -1,9 +1,12 @@
 <?php
+session_start();
+
 include("db_connect.php");
 
-// Funzione: ultimi 10 risultati per sport
-function getUltimi($conn, $id_sport) {
+// Funzione: ultimi risultati per sport
+function getUltimi($conn, $id_sport, $limit = 5) {
     $id_sport = (int)$id_sport;
+    $limit = (int)$limit;
 
     $res = $conn->query("
         SELECT r.id, r.punteggio_sq1, r.punteggio_sq2,
@@ -16,7 +19,7 @@ function getUltimi($conn, $id_sport) {
         JOIN squadra sv ON sv.id = r.vincitore
         WHERE s1.id_sport = $id_sport AND s2.id_sport = $id_sport
         ORDER BY r.id DESC
-        LIMIT 10
+        LIMIT $limit
     ");
 
     $rows = [];
@@ -60,21 +63,23 @@ function getClassifica($conn, $id_sport) {
     return $rows;
 }
 
-// Dati Basket
-$ultimi_basket = getUltimi($conn, 1);
+// Homepage: ultimi 5 risultati per ogni sport
+$ultimi_basket = getUltimi($conn, 1, 5);
+$ultimi_volley = getUltimi($conn, 2, 5);
+$ultimi_basket_f = getUltimi($conn, 3, 5);
+
+// Sport selezionato: ultime 10 partite
+$ultimi10_basket = getUltimi($conn, 1, 10);
+$ultimi10_volley = getUltimi($conn, 2, 10);
+$ultimi10_basket_f = getUltimi($conn, 3, 10);
+
+// Classifiche
 $classifica_basket = getClassifica($conn, 1);
-
-// Dati Pallavolo Femminile
-$ultimi_volley = getUltimi($conn, 2);
 $classifica_volley = getClassifica($conn, 2);
-
-// Dati Basket Femminile
-$ultimi_basket_f = getUltimi($conn, 3);
 $classifica_basket_f = getClassifica($conn, 3);
 
 // Statistiche generali
 $totPartite = $conn->query("SELECT COUNT(*) AS tot FROM risultato")->fetch_assoc()['tot'] ?? 0;
-
 $totSport = $conn->query("SELECT COUNT(*) AS tot FROM sport")->fetch_assoc()['tot'] ?? 0;
 
 // Helper: risultati
@@ -209,8 +214,7 @@ function renderClassifica($classifica, $sport) {
 
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <!-- IMPORTANTE: ?v=20 serve per non caricare il vecchio CSS dalla cache -->
-    <link rel="stylesheet" href="style.css?v=20">
+    <link rel="stylesheet" href="style.css?v=50">
 </head>
 
 <body>
@@ -222,11 +226,26 @@ function renderClassifica($classifica, $sport) {
             <div class="logo-text">Score<span>Maps</span></div>
         </div>
 
-        <nav>
-            <a href="#" onclick="showSport('basket'); return false;">🏀 Basket</a>
-            <a href="#" onclick="showSport('volley'); return false;" class="volley">🏐 Pallavolo</a>
-            <a href="#" onclick="showSport('basketf'); return false;" class="basketf">🏀 Basket F</a>
-        </nav>
+        <div class="header-actions">
+            <select class="sport-select" onchange="showSport(this.value)">
+                <option value="home" selected>🏠 Home</option>
+                <option value="basket">🏀 Basket Maschile</option>
+                <option value="volley">🏐 Pallavolo Femminile</option>
+                <option value="basketf">🏀 Basket Femminile</option>
+            </select>
+
+            <?php if (isset($_SESSION["nome"]) && isset($_SESSION["cognome"])): ?>
+                <div class="user-area">
+                    <div class="user-greeting">
+                        Ciao <?= htmlspecialchars($_SESSION["nome"]) ?> <?= htmlspecialchars($_SESSION["cognome"]) ?>!
+                    </div>
+
+                    <a class="logout-btn" href="logout.php">Logout</a>
+                </div>
+            <?php else: ?>
+                <a class="login-btn" href="login.php?dat=0">Login</a>
+            <?php endif; ?>
+        </div>
     </div>
 </header>
 
@@ -251,109 +270,161 @@ function renderClassifica($classifica, $sport) {
     </div>
 </section>
 
-<div class="sport-tabs">
-    <div class="sport-pill basket active" onclick="showSport('basket')">🏀 Basket</div>
-    <div class="sport-pill volley" onclick="showSport('volley')">🏐 Pallavolo Femminile</div>
-    <div class="sport-pill basketf" onclick="showSport('basketf')">🏀 Basket Femminile</div>
+<!-- HOME: ultimi 5 risultati per ogni sport, senza classifica -->
+<div id="home-view">
+
+    <section class="sport-section-home">
+        <div class="main no-sidebar">
+            <div>
+                <div class="section-title basket">Ultimi 5 Risultati – Basket Maschile</div>
+
+                <div class="risultati">
+                    <?php renderRisultati($ultimi_basket, 'basket'); ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sport-section-home">
+        <div class="main no-sidebar">
+            <div>
+                <div class="section-title volley">Ultimi 5 Risultati – Pallavolo Femminile</div>
+
+                <div class="risultati">
+                    <?php renderRisultati($ultimi_volley, 'volley'); ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sport-section-home">
+        <div class="main no-sidebar">
+            <div>
+                <div class="section-title basketf">Ultimi 5 Risultati – Basket Femminile</div>
+
+                <div class="risultati">
+                    <?php renderRisultati($ultimi_basket_f, 'basketf'); ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </div>
 
-<section class="sport-section active" id="section-basket">
-    <div class="main">
-        <div>
-            <div class="section-title basket">Ultimi Risultati – Basket</div>
+<!-- DETTAGLIO SPORT: ultime 10 partite + classifica -->
+<div id="sport-detail-view">
 
-            <div class="risultati">
-                <?php renderRisultati($ultimi_basket, 'basket'); ?>
-            </div>
-        </div>
+    <section class="sport-section-detail" id="section-basket">
+        <div class="main">
+            <div>
+                <div class="section-title basket">Ultime 10 Partite – Basket Maschile</div>
 
-        <aside class="sidebar">
-            <div class="section-title basket">Classifica Basket</div>
-
-            <div class="rank-card">
-                <div class="rank-header">
-                    <div class="section-title basket small-title">Per vittorie</div>
+                <div class="risultati">
+                    <?php renderRisultati($ultimi10_basket, 'basket'); ?>
                 </div>
-
-                <?php renderClassifica($classifica_basket, 'basket'); ?>
             </div>
-        </aside>
-    </div>
-</section>
 
-<section class="sport-section" id="section-volley">
-    <div class="main">
-        <div>
-            <div class="section-title volley">Ultimi Risultati – Pallavolo Femminile</div>
+            <aside class="sidebar">
+                <div class="section-title basket">Classifica Basket Maschile</div>
 
-            <div class="risultati">
-                <?php renderRisultati($ultimi_volley, 'volley'); ?>
-            </div>
-        </div>
+                <div class="rank-card">
+                    <div class="rank-header">
+                        <div class="section-title basket small-title">Per vittorie</div>
+                    </div>
 
-        <aside class="sidebar">
-            <div class="section-title volley">Classifica Pallavolo</div>
-
-            <div class="rank-card">
-                <div class="rank-header">
-                    <div class="section-title volley small-title">Per vittorie</div>
+                    <?php renderClassifica($classifica_basket, 'basket'); ?>
                 </div>
-
-                <?php renderClassifica($classifica_volley, 'volley'); ?>
-            </div>
-        </aside>
-    </div>
-</section>
-
-<section class="sport-section" id="section-basketf">
-    <div class="main">
-        <div>
-            <div class="section-title basketf">Ultimi Risultati – Basket Femminile</div>
-
-            <div class="risultati">
-                <?php renderRisultati($ultimi_basket_f, 'basketf'); ?>
-            </div>
+            </aside>
         </div>
+    </section>
 
-        <aside class="sidebar">
-            <div class="section-title basketf">Classifica Basket Femminile</div>
+    <section class="sport-section-detail" id="section-volley">
+        <div class="main">
+            <div>
+                <div class="section-title volley">Ultime 10 Partite – Pallavolo Femminile</div>
 
-            <div class="rank-card">
-                <div class="rank-header">
-                    <div class="section-title basketf small-title">Per vittorie</div>
+                <div class="risultati">
+                    <?php renderRisultati($ultimi10_volley, 'volley'); ?>
                 </div>
-
-                <?php renderClassifica($classifica_basket_f, 'basketf'); ?>
             </div>
-        </aside>
-    </div>
-</section>
+
+            <aside class="sidebar">
+                <div class="section-title volley">Classifica Pallavolo Femminile</div>
+
+                <div class="rank-card">
+                    <div class="rank-header">
+                        <div class="section-title volley small-title">Per vittorie</div>
+                    </div>
+
+                    <?php renderClassifica($classifica_volley, 'volley'); ?>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <section class="sport-section-detail" id="section-basketf">
+        <div class="main">
+            <div>
+                <div class="section-title basketf">Ultime 10 Partite – Basket Femminile</div>
+
+                <div class="risultati">
+                    <?php renderRisultati($ultimi10_basket_f, 'basketf'); ?>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="section-title basketf">Classifica Basket Femminile</div>
+
+                <div class="rank-card">
+                    <div class="rank-header">
+                        <div class="section-title basketf small-title">Per vittorie</div>
+                    </div>
+
+                    <?php renderClassifica($classifica_basket_f, 'basketf'); ?>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+</div>
 
 <footer>
-    &copy; <?= date('Y') ?> ScoreMaps &nbsp;·&nbsp; 🏀 Basket &amp; 🏐 Pallavolo &amp; 🏀 Basket Femminile
+    &copy; <?= date('Y') ?> ScoreMaps &nbsp;·&nbsp; 🏀 Basket Maschile &amp; 🏐 Pallavolo Femminile &amp; 🏀 Basket Femminile
 </footer>
 
 <script>
 function showSport(sport) {
-    document.querySelectorAll('.sport-section').forEach(section => {
+    const homeView = document.getElementById('home-view');
+    const detailView = document.getElementById('sport-detail-view');
+    const detailSections = document.querySelectorAll('.sport-section-detail');
+    const select = document.querySelector('.sport-select');
+
+    detailSections.forEach(section => {
         section.classList.remove('active');
     });
 
-    document.querySelectorAll('.sport-pill').forEach(pill => {
-        pill.classList.remove('active');
-    });
+    if (sport === 'home') {
+        homeView.style.display = 'block';
+        detailView.style.display = 'none';
+    } else {
+        homeView.style.display = 'none';
+        detailView.style.display = 'block';
 
-    const section = document.getElementById('section-' + sport);
-    const pill = document.querySelector('.sport-pill.' + sport);
+        const section = document.getElementById('section-' + sport);
 
-    if (section) {
-        section.classList.add('active');
+        if (section) {
+            section.classList.add('active');
+        }
     }
 
-    if (pill) {
-        pill.classList.add('active');
+    if (select) {
+        select.value = sport;
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    showSport('home');
+});
 </script>
 
 </body>

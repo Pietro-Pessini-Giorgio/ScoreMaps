@@ -1,27 +1,34 @@
 <?php
-    include "db_connect.php";
+session_start();
 
-    $email=$_POST["email"];
-    $pass=$_POST["pass"];
+include "db_connect.php";
 
-    $email=trim($email);
-    $pass=trim($pass);
-    $pass=md5($pass);
+$email = $_POST["email"] ?? "";
+$pass = $_POST["pass"] ?? "";
 
-    $sql = "SELECT nome FROM utenti
-    WHERE email LIKE '$email%' AND password LIKE '$pass%';";
-    $resul=$conn->query($sql);
-    if($resul->num_rows>0){
-        $row = $resul->fetch_assoc();
-        $nom=$row['nome'];
-        //$_SESSION["ut"]=$nom;
-        //setcookie("usern", $nom, time() + (86400 * 5), "/");
-        $url="http://localhost/ScoreMaps/ScoreMaps/homepage.php";
-        header('Location: '.$url);
-        die();
-    }else{
-        $url="http://localhost/ScoreMaps/ScoreMaps/login.php?dat=1";
-        header('Location: '.$url);
-    }
-    $conn->close();
+$email = trim($email);
+$pass = trim($pass);
+$pass = md5($pass);
+
+$sql = "SELECT nome, cognome 
+        FROM utenti
+        WHERE email = '$email' 
+        AND password = '$pass'";
+
+$resul = $conn->query($sql);
+
+if ($resul && $resul->num_rows > 0) {
+    $row = $resul->fetch_assoc();
+
+    $_SESSION["nome"] = $row["nome"];
+    $_SESSION["cognome"] = $row["cognome"];
+
+    header("Location: homepage.php");
+    exit;
+} else {
+    header("Location: login.php?dat=1");
+    exit;
+}
+
+$conn->close();
 ?>

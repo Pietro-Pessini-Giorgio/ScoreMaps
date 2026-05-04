@@ -702,3 +702,124 @@ footer {
     color: #e91e8c !important;
     background: rgba(233, 30, 140, .08) !important;
 }
+
+/* HEADER SELECT + LOGIN */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.sport-select {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: .65rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 700;
+    outline: none;
+    cursor: pointer;
+}
+
+.sport-select:hover,
+.sport-select:focus {
+    border-color: var(--accent);
+}
+
+.login-btn {
+    color: var(--bg);
+    background: var(--accent);
+    text-decoration: none;
+    padding: .65rem 1.2rem;
+    border-radius: 999px;
+    font-size: .85rem;
+    font-weight: 800;
+    letter-spacing: .04em;
+    transition: transform .15s, box-shadow .2s;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(245, 166, 35, .35);
+}
+
+/* Nasconde il vecchio nav se per caso esiste ancora */
+nav {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .header-inner {
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .sport-select {
+        flex: 1;
+        max-width: 220px;
+    }
+}
+.user-greeting {
+    color: var(--accent);
+    background: rgba(245, 166, 35, .10);
+    border: 1px solid rgba(245, 166, 35, .25);
+    padding: .65rem 1.2rem;
+    border-radius: 999px;
+    font-size: .85rem;
+    font-weight: 800;
+    letter-spacing: .04em;
+    white-space: nowrap;
+}
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+}
+
+.logout-btn {
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    padding: .65rem 1rem;
+    border-radius: 999px;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .04em;
+    transition: all .2s;
+}
+
+.logout-btn:hover {
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+    background: rgba(255, 107, 107, .08);
+}
+/* HOME SENZA CLASSIFICA */
+
+.main.no-sidebar {
+    grid-template-columns: 1fr;
+}
+
+/* DETTAGLIO SPORT NASCOSTO ALL'INIZIO */
+
+#sport-detail-view {
+    display: none;
+}
+
+.sport-section-detail {
+    display: none;
+}
+
+.sport-section-detail.active {
+    display: block;
+}
