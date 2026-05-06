@@ -866,3 +866,28 @@ nav {
 .sport-section-detail.active {
     display: block;
 }
+/* PALLAVOLO MASCHILE */
+:root {
+    --accent-vm: #00b4d8;
+}
+
+.section-title.volleym::before {
+    background: var(--accent-vm);
+}
+
+.match-card.volleym:hover {
+    border-color: var(--accent-vm);
+    transform: translateY(-2px);
+}
+
+.rank-vic-num.volleym {
+    color: var(--accent-vm);
+}
+
+.win-bar-fill.volleym {
+    background: linear-gradient(90deg, #00b4d8, #90e0ef);
+}
+
+#section-volleym .rank-pos.top1 {
+    color: var(--accent-vm);
+}

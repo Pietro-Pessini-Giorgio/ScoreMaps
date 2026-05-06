@@ -64,23 +64,26 @@ function getClassifica($conn, $id_sport) {
 }
 
 // Homepage: ultimi 5 risultati per ogni sport
-$ultimi_basket = getUltimi($conn, 1, 5);
-$ultimi_volley = getUltimi($conn, 2, 5);
-$ultimi_basket_f = getUltimi($conn, 3, 5);
+$ultimi_basket    = getUltimi($conn, 1, 5);
+$ultimi_volley    = getUltimi($conn, 2, 5);
+$ultimi_basket_f  = getUltimi($conn, 3, 5);
+$ultimi_volley_m  = getUltimi($conn, 4, 5);
 
 // Sport selezionato: ultime 10 partite
-$ultimi10_basket = getUltimi($conn, 1, 10);
-$ultimi10_volley = getUltimi($conn, 2, 10);
+$ultimi10_basket   = getUltimi($conn, 1, 10);
+$ultimi10_volley   = getUltimi($conn, 2, 10);
 $ultimi10_basket_f = getUltimi($conn, 3, 10);
+$ultimi10_volley_m = getUltimi($conn, 4, 10);
 
 // Classifiche
-$classifica_basket = getClassifica($conn, 1);
-$classifica_volley = getClassifica($conn, 2);
+$classifica_basket   = getClassifica($conn, 1);
+$classifica_volley   = getClassifica($conn, 2);
 $classifica_basket_f = getClassifica($conn, 3);
+$classifica_volley_m = getClassifica($conn, 4);
 
 // Statistiche generali
 $totPartite = $conn->query("SELECT COUNT(*) AS tot FROM risultato")->fetch_assoc()['tot'] ?? 0;
-$totSport = $conn->query("SELECT COUNT(*) AS tot FROM sport")->fetch_assoc()['tot'] ?? 0;
+$totSport   = $conn->query("SELECT COUNT(*) AS tot FROM sport")->fetch_assoc()['tot'] ?? 0;
 
 // Helper: risultati
 function renderRisultati($ultimi, $sport) {
@@ -88,8 +91,8 @@ function renderRisultati($ultimi, $sport) {
         $win1 = ($m['vincitore_nome'] === $m['nome1']);
         $win2 = ($m['vincitore_nome'] === $m['nome2']);
 
-        $placeholder = ($sport === 'volley') ? '🏐' : '🏀';
-        $label = ($sport === 'volley') ? "Set &nbsp;·&nbsp; Partita #{$m['id']}" : "Partita #{$m['id']}";
+        $placeholder = ($sport === 'volley' || $sport === 'volleym') ? '🏐' : '🏀';
+        $label = ($sport === 'volley' || $sport === 'volleym') ? "Set &nbsp;·&nbsp; Partita #{$m['id']}" : "Partita #{$m['id']}";
 ?>
         <div class="match-card <?= htmlspecialchars($sport) ?>" style="animation-delay: <?= $i * .06 ?>s">
 
@@ -151,13 +154,13 @@ function renderRisultati($ultimi, $sport) {
 // Helper: classifica
 function renderClassifica($classifica, $sport) {
     $maxVic = $classifica[0]['vittorie'] ?? 1;
-    $placeholder = ($sport === 'volley') ? '🏐' : '🏀';
+    $placeholder = ($sport === 'volley' || $sport === 'volleym') ? '🏐' : '🏀';
 
     foreach ($classifica as $pos => $sq):
         $vittorie = (int)$sq['vittorie'];
-        $partite = (int)$sq['partite'];
+        $partite  = (int)$sq['partite'];
 
-        $pct = $partite > 0 ? round(($vittorie / $partite) * 100) : 0;
+        $pct  = $partite > 0 ? round(($vittorie / $partite) * 100) : 0;
         $barW = $maxVic > 0 ? round(($vittorie / $maxVic) * 100) : 0;
 
         $pc = match($pos) {
@@ -214,7 +217,7 @@ function renderClassifica($classifica, $sport) {
 
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=52">
+    <link rel="stylesheet" href="style.css?v=53">
 </head>
 
 <body>
@@ -232,6 +235,7 @@ function renderClassifica($classifica, $sport) {
                 <option value="basket">🏀 Basket Maschile</option>
                 <option value="basketf">🏀 Basket Femminile</option>
                 <option value="volley">🏐 Pallavolo Femminile</option>
+                <option value="volleym">🏐 Pallavolo Maschile</option>
             </select>
 
             <?php if (isset($_SESSION["nome"]) && isset($_SESSION["cognome"])): ?>
@@ -304,6 +308,18 @@ function renderClassifica($classifica, $sport) {
 
                 <div class="risultati">
                     <?php renderRisultati($ultimi_volley, 'volley'); ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sport-section-home">
+        <div class="main no-sidebar">
+            <div>
+                <div class="section-title volleym">Ultimi 5 Risultati – Pallavolo Maschile</div>
+
+                <div class="risultati">
+                    <?php renderRisultati($ultimi_volley_m, 'volleym'); ?>
                 </div>
             </div>
         </div>
@@ -386,10 +402,34 @@ function renderClassifica($classifica, $sport) {
         </div>
     </section>
 
+    <section class="sport-section-detail" id="section-volleym">
+        <div class="main">
+            <div>
+                <div class="section-title volleym">Ultime 10 Partite – Pallavolo Maschile</div>
+
+                <div class="risultati">
+                    <?php renderRisultati($ultimi10_volley_m, 'volleym'); ?>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="section-title volleym">Classifica Pallavolo Maschile</div>
+
+                <div class="rank-card">
+                    <div class="rank-header">
+                        <div class="section-title volleym small-title">Per vittorie</div>
+                    </div>
+
+                    <?php renderClassifica($classifica_volley_m, 'volleym'); ?>
+                </div>
+            </aside>
+        </div>
+    </section>
+
 </div>
 
 <footer>
-    &copy; <?= date('Y') ?> ScoreMaps &nbsp;·&nbsp; 🏀 Basket Maschile &amp; 🏐 Pallavolo Femminile &amp; 🏀 Basket Femminile
+    &copy; <?= date('Y') ?> ScoreMaps &nbsp;·&nbsp; 🏀 Basket Maschile &amp; 🏀 Basket Femminile &amp; 🏐 Pallavolo Femminile &amp; 🏐 Pallavolo Maschile
 </footer>
 
 <script>
