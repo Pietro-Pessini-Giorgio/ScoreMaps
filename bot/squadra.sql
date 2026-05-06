@@ -78,7 +78,19 @@ INSERT INTO `squadra` (`id`, `nome`, `logo`, `id_sport`) VALUES
 (43, 'Logiman Broni', 'img/broni.png', 3),
 (44, 'Dinamo Banco di Sardegna Women', 'img/sassari.png', 3),
 (45, 'RMB Brixia Basket', 'img/brixia.png', 3),
-(46, 'O.ME.P.S. Battipaglia', 'img/battipaglia.png', 3);
+(46, 'O.ME.P.S. Battipaglia', 'img/battipaglia.png', 3),
+(47, 'Allianz Milano', 'img/allianz_milano.png', 4),
+(48, 'Cisterna Volley', 'img/cisterna.png', 4),
+(49, 'Cucine Lube Civitanova', 'img/civitanova.png', 4),
+(50, 'Gas Sales Bluenergy Piacenza', 'img/piacenza.png', 4),
+(51, 'Itas Trentino', 'img/itas_trentino.png', 4),
+(52, 'MA Acqua S.Bernardo Cuneo', 'img/cuneo_m.png', 4),
+(53, 'Rana Verona', 'img/verona.png', 4),
+(54, 'Sir Susa Scai Perugia', 'img/perugia_m.png', 4),
+(55, 'Sonepar Padova', 'img/padova.png', 4),
+(56, 'Valsa Group Modena', 'img/modena.png', 4),
+(57, 'Vero Volley Monza', 'img/monza.png', 4),
+(58, 'Yuasa Battery Grottazzolina', 'img/grottazzolina.png', 4);
 
 --
 -- Indici per le tabelle scaricate
