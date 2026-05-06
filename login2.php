@@ -26,7 +26,7 @@ $email = trim($email);
 $pass = trim($pass);
 $pass = md5($pass);
 
-$sql = "SELECT nome, cognome 
+$sql = "SELECT , cognome 
         FROM utenti
         WHERE email = '$email' 
         AND password = '$pass'";
