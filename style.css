@@ -25,24 +25,62 @@ html {
     scroll-behavior: smooth;
 }
 
+html {
+    scroll-behavior: smooth;
+    min-height: 100%;
+}
+
 body {
-    background: var(--bg);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
+    background: var(--bg);
+    padding-top: 90px;
+}
+
+/* SFONDO CON LOGO */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image:
+        linear-gradient(rgba(10, 11, 15, 0.72), rgba(10, 11, 15, 0.72)),
+        url("img/logo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Leggera sfumatura sopra lo sfondo */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(circle at top left, rgba(245,166,35,.16), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(108,99,255,.12), transparent 35%);
+    pointer-events: none;
 }
 
 /* HEADER */
 
 header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+
     padding: 0 2rem;
-    background: var(--surface);
+    background: rgba(19, 21, 28, 0.90);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     overflow: hidden;
 }
-
 header::before {
     content: '';
     position: absolute;
@@ -300,7 +338,8 @@ nav a.basketf:hover {
 }
 
 .match-card {
-    background: var(--card);
+    background: rgba(26, 29, 39, 0.82);
+    backdrop-filter: blur(8px);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1rem 1.4rem;
@@ -423,7 +462,8 @@ nav a.basketf:hover {
 }
 
 .rank-card {
-    background: var(--card);
+    background: rgba(26, 29, 39, 0.82);
+    backdrop-filter: blur(8px);
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
@@ -571,7 +611,8 @@ nav a.basketf:hover {
 /* MESSAGGI VUOTI */
 
 .empty-message {
-    background: var(--card);
+    background: rgba(26, 29, 39, 0.82);
+    backdrop-filter: blur(8px);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1rem;
@@ -583,6 +624,8 @@ nav a.basketf:hover {
 
 footer {
     border-top: 1px solid var(--border);
+    background: rgba(10, 11, 15, 0.75);
+    backdrop-filter: blur(8px);
     text-align: center;
     padding: 2rem;
     color: var(--muted);
