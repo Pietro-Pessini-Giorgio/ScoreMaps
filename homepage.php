@@ -214,7 +214,7 @@ function renderClassifica($classifica, $sport) {
 
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=50">
+    <link rel="stylesheet" href="style.css?v=52">
 </head>
 
 <body>
@@ -230,8 +230,8 @@ function renderClassifica($classifica, $sport) {
             <select class="sport-select" onchange="showSport(this.value)">
                 <option value="home" selected>🏠 Home</option>
                 <option value="basket">🏀 Basket Maschile</option>
-                <option value="volley">🏐 Pallavolo Femminile</option>
                 <option value="basketf">🏀 Basket Femminile</option>
+                <option value="volley">🏐 Pallavolo Femminile</option>
             </select>
 
             <?php if (isset($_SESSION["nome"]) && isset($_SESSION["cognome"])): ?>
@@ -288,10 +288,10 @@ function renderClassifica($classifica, $sport) {
     <section class="sport-section-home">
         <div class="main no-sidebar">
             <div>
-                <div class="section-title volley">Ultimi 5 Risultati – Pallavolo Femminile</div>
+                <div class="section-title basketf">Ultimi 5 Risultati – Basket Femminile</div>
 
                 <div class="risultati">
-                    <?php renderRisultati($ultimi_volley, 'volley'); ?>
+                    <?php renderRisultati($ultimi_basket_f, 'basketf'); ?>
                 </div>
             </div>
         </div>
@@ -300,10 +300,10 @@ function renderClassifica($classifica, $sport) {
     <section class="sport-section-home">
         <div class="main no-sidebar">
             <div>
-                <div class="section-title basketf">Ultimi 5 Risultati – Basket Femminile</div>
+                <div class="section-title volley">Ultimi 5 Risultati – Pallavolo Femminile</div>
 
                 <div class="risultati">
-                    <?php renderRisultati($ultimi_basket_f, 'basketf'); ?>
+                    <?php renderRisultati($ultimi_volley, 'volley'); ?>
                 </div>
             </div>
         </div>
