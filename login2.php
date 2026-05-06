@@ -8,6 +8,7 @@
     $pass=trim($pass);
     $pass=md5($pass);
 
+<<<<<<< Updated upstream
     $sql = "SELECT nome FROM utenti
     WHERE email LIKE '$email%' AND password LIKE '$pass%';";
     $resul=$conn->query($sql);
@@ -23,4 +24,31 @@
         header('Location: '.$url);
     }
     $conn->close();
+=======
+$email = trim($email);
+$pass = trim($pass);
+$pass = md5($pass);
+
+$sql = "SELECT , cognome 
+        FROM utenti
+        WHERE email = '$email' 
+        AND password = '$pass'";
+
+$resul = $conn->query($sql);
+
+if ($resul && $resul->num_rows > 0) {
+    $row = $resul->fetch_assoc();
+
+    $_SESSION["nome"] = $row["nome"];
+    $_SESSION["cognome"] = $row["cognome"];
+
+    header("Location: homepage.php");
+    exit;
+} else {
+    header("Location: login.php?dat=1");
+    exit;
+}
+
+$conn->close();
+>>>>>>> Stashed changes
 ?>
