@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 27, 2026 alle 11:46
+-- Creato il: Mag 06, 2026 alle 10:42
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -418,7 +418,7 @@ INSERT INTO `risultato` (`id`, `id_squadra1`, `id_squadra2`, `punteggio_sq1`, `p
 (375, 28, 27, 1, 3, 27),
 (376, 30, 34, 3, 0, 30),
 (377, 26, 29, 2, 3, 29),
-(378, 23, 24, 2, 3, 24);
+(378, 23, 24, 2, 3, 24),
 (379, 44, 42, 76, 64, 44),
 (380, 37, 46, 74, 50, 37),
 (381, 36, 41, 76, 52, 36),
@@ -528,7 +528,139 @@ INSERT INTO `risultato` (`id`, `id_squadra1`, `id_squadra2`, `punteggio_sq1`, `p
 (485, 42, 37, 81, 77, 42),
 (486, 40, 38, 71, 50, 40),
 (487, 41, 45, 76, 65, 41),
-(488, 39, 43, 76, 51, 39);
+(488, 39, 43, 76, 51, 39),
+(489, 49, 58, 3, 1, 49),
+(490, 53, 50, 3, 1, 53),
+(491, 47, 56, 3, 2, 47),
+(492, 48, 51, 0, 3, 51),
+(493, 55, 52, 3, 2, 55),
+(494, 57, 54, 1, 3, 54),
+(495, 51, 55, 3, 0, 51),
+(496, 54, 49, 3, 2, 54),
+(497, 50, 47, 3, 1, 50),
+(498, 56, 57, 3, 0, 56),
+(499, 58, 53, 0, 3, 53),
+(500, 52, 48, 3, 0, 52),
+(501, 54, 55, 3, 0, 54),
+(502, 49, 51, 3, 1, 49),
+(503, 53, 47, 3, 0, 53),
+(504, 50, 56, 1, 3, 56),
+(505, 48, 58, 3, 2, 48),
+(506, 57, 52, 3, 1, 57),
+(507, 49, 48, 3, 1, 49),
+(508, 53, 51, 3, 1, 53),
+(509, 47, 57, 3, 1, 47),
+(510, 56, 54, 1, 3, 54),
+(511, 55, 58, 3, 1, 55),
+(512, 52, 50, 2, 3, 50),
+(513, 51, 57, 3, 0, 51),
+(514, 54, 53, 2, 3, 53),
+(515, 50, 49, 3, 0, 50),
+(516, 48, 56, 3, 2, 48),
+(517, 55, 47, 2, 3, 47),
+(518, 58, 52, 0, 3, 52),
+(519, 49, 53, 3, 0, 49),
+(520, 50, 54, 2, 3, 54),
+(521, 47, 58, 3, 0, 47),
+(522, 56, 55, 3, 0, 56),
+(523, 57, 48, 2, 3, 48),
+(524, 52, 51, 1, 3, 51),
+(525, 51, 54, 3, 1, 51),
+(526, 53, 57, 3, 0, 53),
+(527, 48, 47, 0, 3, 47),
+(528, 55, 49, 3, 2, 55),
+(529, 58, 50, 0, 3, 50),
+(530, 52, 56, 2, 3, 56),
+(531, 54, 48, 3, 0, 54),
+(532, 49, 52, 3, 0, 49),
+(533, 47, 51, 0, 3, 51),
+(534, 56, 58, 3, 1, 56),
+(535, 55, 53, 1, 3, 53),
+(536, 57, 50, 0, 3, 50),
+(537, 51, 56, 3, 0, 51),
+(538, 53, 48, 3, 0, 53),
+(539, 50, 55, 3, 0, 50),
+(540, 58, 54, 0, 3, 54),
+(541, 57, 49, 3, 1, 57),
+(542, 52, 47, 1, 3, 47),
+(543, 47, 54, 0, 3, 54),
+(544, 56, 49, 3, 1, 56),
+(545, 48, 50, 1, 3, 50),
+(546, 55, 57, 1, 3, 57),
+(547, 58, 51, 0, 3, 51),
+(548, 52, 53, 0, 3, 53),
+(549, 51, 50, 3, 2, 51),
+(550, 54, 52, 3, 0, 54),
+(551, 49, 47, 3, 2, 49),
+(552, 53, 56, 1, 3, 56),
+(553, 48, 55, 1, 3, 55),
+(554, 57, 58, 3, 2, 57),
+(555, 54, 57, 3, 1, 54),
+(556, 50, 53, 2, 3, 53),
+(557, 56, 48, 3, 1, 56),
+(558, 55, 51, 0, 3, 51),
+(559, 58, 47, 0, 3, 47),
+(560, 52, 49, 0, 3, 49),
+(561, 49, 50, 3, 1, 49),
+(562, 53, 58, 3, 0, 53),
+(563, 47, 55, 3, 1, 47),
+(564, 56, 52, 3, 0, 56),
+(565, 48, 54, 0, 3, 54),
+(566, 57, 51, 0, 3, 51),
+(567, 51, 49, 3, 1, 51),
+(568, 54, 47, 3, 1, 54),
+(569, 50, 52, 3, 0, 50),
+(570, 55, 56, 1, 3, 56),
+(571, 58, 48, 3, 2, 58),
+(572, 57, 53, 0, 3, 53),
+(573, 51, 53, 2, 3, 53),
+(574, 54, 56, 3, 1, 54),
+(575, 49, 55, 3, 0, 49),
+(576, 50, 57, 3, 0, 50),
+(577, 47, 48, 3, 1, 47),
+(578, 52, 58, 3, 0, 52),
+(579, 53, 55, 3, 0, 53),
+(580, 47, 50, 0, 3, 50),
+(581, 56, 51, 3, 1, 56),
+(582, 48, 57, 3, 1, 48),
+(583, 58, 49, 0, 3, 49),
+(584, 52, 54, 0, 3, 54),
+(585, 51, 47, 3, 0, 51),
+(586, 49, 54, 1, 3, 54),
+(587, 53, 52, 3, 0, 53),
+(588, 50, 58, 3, 0, 50),
+(589, 55, 48, 3, 2, 55),
+(590, 57, 56, 3, 0, 57),
+(591, 54, 51, 3, 1, 54),
+(592, 53, 49, 0, 3, 49),
+(593, 50, 48, 3, 0, 50),
+(594, 56, 47, 3, 0, 56),
+(595, 55, 54, 1, 3, 54),
+(596, 58, 57, 0, 3, 57),
+(597, 51, 58, 3, 2, 51),
+(598, 54, 50, 3, 2, 54),
+(599, 49, 56, 2, 3, 56),
+(600, 47, 53, 0, 3, 53),
+(601, 48, 52, 3, 0, 48),
+(602, 57, 55, 3, 0, 57),
+(603, 53, 54, 0, 3, 54),
+(604, 50, 51, 3, 1, 50),
+(605, 48, 49, 2, 3, 49),
+(606, 58, 56, 0, 3, 56),
+(607, 57, 47, 3, 1, 57),
+(608, 52, 55, 2, 3, 55),
+(609, 53, 54, 0, 3, 54),
+(610, 50, 51, 3, 1, 50),
+(611, 48, 49, 2, 3, 49),
+(612, 58, 56, 0, 3, 56),
+(613, 57, 47, 3, 1, 57),
+(614, 52, 55, 2, 3, 55),
+(615, 51, 48, 3, 0, 51),
+(616, 54, 58, 3, 0, 54),
+(617, 49, 57, 3, 0, 49),
+(618, 47, 52, 3, 0, 47),
+(619, 56, 53, 3, 1, 56),
+(620, 55, 50, 3, 2, 55);
 
 -- --------------------------------------------------------
 
@@ -547,8 +679,9 @@ CREATE TABLE `sport` (
 
 INSERT INTO `sport` (`id`, `nome`) VALUES
 (1, 'Basket'),
-(2, 'Pallavolo_F');
-(3, 'Basket_F');
+(2, 'Pallavolo_F'),
+(3, 'Basket_F'),
+(4, 'Pallavolo_M');
 
 -- --------------------------------------------------------
 
@@ -596,7 +729,7 @@ INSERT INTO `squadra` (`id`, `nome`, `logo`, `id_sport`) VALUES
 (32, 'Prosecco Doc A.Carraro Imoco Conegliano', 'img/conegliano.png', 2),
 (33, 'Reale Mutua Fenera Chieri \'76', 'img/chieri.png', 2),
 (34, 'Savino Del Bene Scandicci', 'img/scandicci.png', 2),
-(35, 'Wash4green Monviso Volley', 'img/monviso.png', 2);
+(35, 'Wash4green Monviso Volley', 'img/monviso.png', 2),
 (36, 'Famila Wuber Schio', 'img/schio.png', 3),
 (37, 'Umana Reyer Venezia', 'img/venezia.png', 3),
 (38, 'La Molisana Magnolia Campobasso', 'img/campobasso.png', 3),
@@ -607,7 +740,19 @@ INSERT INTO `squadra` (`id`, `nome`, `logo`, `id_sport`) VALUES
 (43, 'Logiman Broni', 'img/broni.png', 3),
 (44, 'Dinamo Banco di Sardegna Women', 'img/sassari.png', 3),
 (45, 'RMB Brixia Basket', 'img/brixia.png', 3),
-(46, 'O.ME.P.S. Battipaglia', 'img/battipaglia.png', 3);
+(46, 'O.ME.P.S. Battipaglia', 'img/battipaglia.png', 3),
+(47, 'Allianz Milano', 'img/allianz_milano.png', 4),
+(48, 'Cisterna Volley', 'img/cisterna.png', 4),
+(49, 'Cucine Lube Civitanova', 'img/civitanova.png', 4),
+(50, 'Gas Sales Bluenergy Piacenza', 'img/piacenza.png', 4),
+(51, 'Itas Trentino', 'img/itas_trentino.png', 4),
+(52, 'MA Acqua S.Bernardo Cuneo', 'img/cuneo_m.png', 4),
+(53, 'Rana Verona', 'img/verona.png', 4),
+(54, 'Sir Susa Scai Perugia', 'img/perugia_m.png', 4),
+(55, 'Sonepar Padova', 'img/padova.png', 4),
+(56, 'Valsa Group Modena', 'img/modena.png', 4),
+(57, 'Vero Volley Monza', 'img/monza.png', 4),
+(58, 'Yuasa Battery Grottazzolina', 'img/grottazzolina.png', 4);
 
 -- --------------------------------------------------------
 
@@ -623,6 +768,13 @@ CREATE TABLE `utenti` (
   `password` varchar(40) NOT NULL,
   `admin` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `utenti`
+--
+
+INSERT INTO `utenti` (`id`, `nome`, `cognome`, `email`, `password`, `admin`) VALUES
+(1, 'Matteo', 'Giammarioli', 'test@example.it', '4e50d33cce9999be01c2f4959a7f1c21', b'0');
 
 --
 -- Indici per le tabelle scaricate
@@ -665,19 +817,19 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `risultato`
 --
 ALTER TABLE `risultato`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=379;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=621;
 
 --
 -- AUTO_INCREMENT per la tabella `sport`
 --
 ALTER TABLE `sport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Limiti per le tabelle scaricate
