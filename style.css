@@ -892,3 +892,45 @@ nav {
 #section-volleym .rank-pos.top1 {
     color: var(--accent-vm);
 }
+
+:root {
+    --accent-rugby: #4a7c59;
+    --accent-rugby-light: #7dba91;
+}
+
+.section-title.rugby::before {
+    background: var(--accent-rugby);
+}
+
+.match-card.rugby:hover {
+    border-color: var(--accent-rugby);
+    transform: translateY(-2px);
+}
+
+.rank-vic-num.rugby {
+    color: var(--accent-rugby-light);
+}
+
+.win-bar-fill.rugby {
+    background: linear-gradient(90deg, var(--accent-rugby), var(--accent-rugby-light));
+}
+
+#section-rugby .rank-pos.top1 {
+    color: var(--accent-rugby-light);
+}
+
+#section-rugby .section-title::before {
+    background: var(--accent-rugby) !important;
+}
+
+#section-rugby .match-card:hover {
+    border-color: var(--accent-rugby) !important;
+}
+
+#section-rugby .rank-vic-num {
+    color: var(--accent-rugby-light) !important;
+}
+
+#section-rugby .win-bar-fill {
+    background: linear-gradient(90deg, var(--accent-rugby), var(--accent-rugby-light)) !important;
+}

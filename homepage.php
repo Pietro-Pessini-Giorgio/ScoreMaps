@@ -68,18 +68,21 @@ $ultimi_basket    = getUltimi($conn, 1, 5);
 $ultimi_volley    = getUltimi($conn, 2, 5);
 $ultimi_basket_f  = getUltimi($conn, 3, 5);
 $ultimi_volley_m  = getUltimi($conn, 4, 5);
+$ultimi_rugby     = getUltimi($conn, 5, 5);
 
 // Sport selezionato: ultime 10 partite
 $ultimi10_basket   = getUltimi($conn, 1, 10);
 $ultimi10_volley   = getUltimi($conn, 2, 10);
 $ultimi10_basket_f = getUltimi($conn, 3, 10);
 $ultimi10_volley_m = getUltimi($conn, 4, 10);
+$ultimi10_rugby    = getUltimi($conn, 5, 10);
 
 // Classifiche
 $classifica_basket   = getClassifica($conn, 1);
 $classifica_volley   = getClassifica($conn, 2);
 $classifica_basket_f = getClassifica($conn, 3);
 $classifica_volley_m = getClassifica($conn, 4);
+$classifica_rugby    = getClassifica($conn, 5);
 
 // Statistiche generali
 $totPartite = $conn->query("SELECT COUNT(*) AS tot FROM risultato")->fetch_assoc()['tot'] ?? 0;
@@ -91,7 +94,7 @@ function renderRisultati($ultimi, $sport) {
         $win1 = ($m['vincitore_nome'] === $m['nome1']);
         $win2 = ($m['vincitore_nome'] === $m['nome2']);
 
-        $placeholder = ($sport === 'volley' || $sport === 'volleym') ? '🏐' : '🏀';
+        $placeholder = ($sport === 'volley' || $sport === 'volleym') ? '🏐' : ($sport === 'rugby' ? '🏉' : '🏀');
         $label = ($sport === 'volley' || $sport === 'volleym') ? "Set &nbsp;·&nbsp; Partita #{$m['id']}" : "Partita #{$m['id']}";
 ?>
         <div class="match-card <?= htmlspecialchars($sport) ?>" style="animation-delay: <?= $i * .06 ?>s">
@@ -154,7 +157,7 @@ function renderRisultati($ultimi, $sport) {
 // Helper: classifica
 function renderClassifica($classifica, $sport) {
     $maxVic = $classifica[0]['vittorie'] ?? 1;
-    $placeholder = ($sport === 'volley' || $sport === 'volleym') ? '🏐' : '🏀';
+    $placeholder = ($sport === 'volley' || $sport === 'volleym') ? '🏐' : ($sport === 'rugby' ? '🏉' : '🏀');
 
     foreach ($classifica as $pos => $sq):
         $vittorie = (int)$sq['vittorie'];
@@ -236,6 +239,7 @@ function renderClassifica($classifica, $sport) {
                 <option value="basketf">🏀 Basket Femminile</option>
                 <option value="volley">🏐 Pallavolo Femminile</option>
                 <option value="volleym">🏐 Pallavolo Maschile</option>
+                <option value="rugby">🏉 Rugby Maschile</option>
             </select>
 
             <?php if (isset($_SESSION["nome"]) && isset($_SESSION["cognome"])): ?>
@@ -320,6 +324,18 @@ function renderClassifica($classifica, $sport) {
 
                 <div class="risultati">
                     <?php renderRisultati($ultimi_volley_m, 'volleym'); ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sport-section-home">
+        <div class="main no-sidebar">
+            <div>
+                <div class="section-title rugby">Ultimi 5 Risultati – Rugby Maschile</div>
+
+                <div class="risultati">
+                    <?php renderRisultati($ultimi_rugby, 'rugby'); ?>
                 </div>
             </div>
         </div>
@@ -421,6 +437,30 @@ function renderClassifica($classifica, $sport) {
                     </div>
 
                     <?php renderClassifica($classifica_volley_m, 'volleym'); ?>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <section class="sport-section-detail" id="section-rugby">
+        <div class="main">
+            <div>
+                <div class="section-title rugby">Ultime 10 Partite – Rugby Maschile</div>
+
+                <div class="risultati">
+                    <?php renderRisultati($ultimi10_rugby, 'rugby'); ?>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="section-title rugby">Classifica Rugby Maschile</div>
+
+                <div class="rank-card">
+                    <div class="rank-header">
+                        <div class="section-title rugby small-title">Per vittorie</div>
+                    </div>
+
+                    <?php renderClassifica($classifica_rugby, 'rugby'); ?>
                 </div>
             </aside>
         </div>
