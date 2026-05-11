@@ -429,7 +429,7 @@ function renderClassifica($classifica, $sport) {
 </div>
 
 <footer>
-    &copy; <?= date('Y') ?> ScoreMaps &nbsp;·&nbsp; 🏀 Basket Maschile &amp; 🏀 Basket Femminile &amp; 🏐 Pallavolo Femminile &amp; 🏐 Pallavolo Maschile
+    &copy; <?= date('Y') ?> ScoreMaps
 </footer>
 
 <script>
