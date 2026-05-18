@@ -217,9 +217,7 @@ function renderClassifica($classifica, $sport) {
     <title>ScoreMaps – Sport Italiani</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="style.css?v=53">
 </head>
 
@@ -247,7 +245,6 @@ function renderClassifica($classifica, $sport) {
                     <div class="user-greeting">
                         Ciao <?= htmlspecialchars($_SESSION["nome"]) ?> <?= htmlspecialchars($_SESSION["cognome"]) ?>!
                     </div>
-
                     <a class="logout-btn" href="logout.php">Logout</a>
                 </div>
             <?php else: ?>
@@ -285,7 +282,6 @@ function renderClassifica($classifica, $sport) {
         <div class="main no-sidebar">
             <div>
                 <div class="section-title basket">Ultimi 5 Risultati – Basket Maschile</div>
-
                 <div class="risultati">
                     <?php renderRisultati($ultimi_basket, 'basket'); ?>
                 </div>
@@ -297,7 +293,6 @@ function renderClassifica($classifica, $sport) {
         <div class="main no-sidebar">
             <div>
                 <div class="section-title basketf">Ultimi 5 Risultati – Basket Femminile</div>
-
                 <div class="risultati">
                     <?php renderRisultati($ultimi_basket_f, 'basketf'); ?>
                 </div>
@@ -309,7 +304,6 @@ function renderClassifica($classifica, $sport) {
         <div class="main no-sidebar">
             <div>
                 <div class="section-title volley">Ultimi 5 Risultati – Pallavolo Femminile</div>
-
                 <div class="risultati">
                     <?php renderRisultati($ultimi_volley, 'volley'); ?>
                 </div>
@@ -321,7 +315,6 @@ function renderClassifica($classifica, $sport) {
         <div class="main no-sidebar">
             <div>
                 <div class="section-title volleym">Ultimi 5 Risultati – Pallavolo Maschile</div>
-
                 <div class="risultati">
                     <?php renderRisultati($ultimi_volley_m, 'volleym'); ?>
                 </div>
@@ -333,7 +326,6 @@ function renderClassifica($classifica, $sport) {
         <div class="main no-sidebar">
             <div>
                 <div class="section-title rugby">Ultimi 5 Risultati – Rugby Maschile</div>
-
                 <div class="risultati">
                     <?php renderRisultati($ultimi_rugby, 'rugby'); ?>
                 </div>
@@ -350,20 +342,16 @@ function renderClassifica($classifica, $sport) {
         <div class="main">
             <div>
                 <div class="section-title basket">Ultime 10 Partite – Basket Maschile</div>
-
                 <div class="risultati">
                     <?php renderRisultati($ultimi10_basket, 'basket'); ?>
                 </div>
             </div>
-
             <aside class="sidebar">
                 <div class="section-title basket">Classifica Basket Maschile</div>
-
                 <div class="rank-card">
                     <div class="rank-header">
                         <div class="section-title basket small-title">Per vittorie</div>
                     </div>
-
                     <?php renderClassifica($classifica_basket, 'basket'); ?>
                 </div>
             </aside>
@@ -374,20 +362,16 @@ function renderClassifica($classifica, $sport) {
         <div class="main">
             <div>
                 <div class="section-title volley">Ultime 10 Partite – Pallavolo Femminile</div>
-
                 <div class="risultati">
                     <?php renderRisultati($ultimi10_volley, 'volley'); ?>
                 </div>
             </div>
-
             <aside class="sidebar">
                 <div class="section-title volley">Classifica Pallavolo Femminile</div>
-
                 <div class="rank-card">
                     <div class="rank-header">
                         <div class="section-title volley small-title">Per vittorie</div>
                     </div>
-
                     <?php renderClassifica($classifica_volley, 'volley'); ?>
                 </div>
             </aside>
@@ -398,20 +382,16 @@ function renderClassifica($classifica, $sport) {
         <div class="main">
             <div>
                 <div class="section-title basketf">Ultime 10 Partite – Basket Femminile</div>
-
                 <div class="risultati">
                     <?php renderRisultati($ultimi10_basket_f, 'basketf'); ?>
                 </div>
             </div>
-
             <aside class="sidebar">
                 <div class="section-title basketf">Classifica Basket Femminile</div>
-
                 <div class="rank-card">
                     <div class="rank-header">
                         <div class="section-title basketf small-title">Per vittorie</div>
                     </div>
-
                     <?php renderClassifica($classifica_basket_f, 'basketf'); ?>
                 </div>
             </aside>
@@ -422,20 +402,16 @@ function renderClassifica($classifica, $sport) {
         <div class="main">
             <div>
                 <div class="section-title volleym">Ultime 10 Partite – Pallavolo Maschile</div>
-
                 <div class="risultati">
                     <?php renderRisultati($ultimi10_volley_m, 'volleym'); ?>
                 </div>
             </div>
-
             <aside class="sidebar">
                 <div class="section-title volleym">Classifica Pallavolo Maschile</div>
-
                 <div class="rank-card">
                     <div class="rank-header">
                         <div class="section-title volleym small-title">Per vittorie</div>
                     </div>
-
                     <?php renderClassifica($classifica_volley_m, 'volleym'); ?>
                 </div>
             </aside>
@@ -446,20 +422,16 @@ function renderClassifica($classifica, $sport) {
         <div class="main">
             <div>
                 <div class="section-title rugby">Ultime 10 Partite – Rugby Maschile</div>
-
                 <div class="risultati">
                     <?php renderRisultati($ultimi10_rugby, 'rugby'); ?>
                 </div>
             </div>
-
             <aside class="sidebar">
                 <div class="section-title rugby">Classifica Rugby Maschile</div>
-
                 <div class="rank-card">
                     <div class="rank-header">
                         <div class="section-title rugby small-title">Per vittorie</div>
                     </div>
-
                     <?php renderClassifica($classifica_rugby, 'rugby'); ?>
                 </div>
             </aside>
@@ -468,41 +440,67 @@ function renderClassifica($classifica, $sport) {
 
 </div>
 
+<!-- Modal login richiesto -->
+<div id="login-modal-overlay" onclick="closeLoginModal()"></div>
+<div id="login-modal">
+    <div class="modal-title">🏆 ScoreMaps</div>
+    <div class="modal-msg">Devi essere loggato per visualizzare i dettagli di uno sport.</div>
+    <div class="modal-actions">
+        <button class="modal-cancel" onclick="closeLoginModal()">Annulla</button>
+        <a href="login.php?dat=0" class="modal-login-link">Accedi</a>
+    </div>
+</div>
+
 <footer>
     &copy; <?= date('Y') ?> ScoreMaps
 </footer>
 
+<!-- Stato login passato al JS -->
 <script>
-function showSport(sport) {
-    const homeView = document.getElementById('home-view');
-    const detailView = document.getElementById('sport-detail-view');
-    const detailSections = document.querySelectorAll('.sport-section-detail');
-    const select = document.querySelector('.sport-select');
+const isLoggedIn = <?= (isset($_SESSION['nome']) && isset($_SESSION['cognome'])) ? 'true' : 'false' ?>;
+</script>
 
-    detailSections.forEach(section => {
-        section.classList.remove('active');
-    });
+<script>
+function showLoginModal() {
+    document.getElementById('login-modal').style.display = 'block';
+    document.getElementById('login-modal-overlay').style.display = 'block';
+}
+
+function closeLoginModal() {
+    document.getElementById('login-modal').style.display = 'none';
+    document.getElementById('login-modal-overlay').style.display = 'none';
+}
+
+function showSport(sport) {
+    const homeView       = document.getElementById('home-view');
+    const detailView     = document.getElementById('sport-detail-view');
+    const detailSections = document.querySelectorAll('.sport-section-detail');
+    const select         = document.querySelector('.sport-select');
+
+    // Se non loggato e si tenta di selezionare uno sport, blocca e avvisa
+    if (sport !== 'home' && !isLoggedIn) {
+        showLoginModal();
+        if (select) select.value = 'home';
+        return;
+    }
+
+    detailSections.forEach(section => section.classList.remove('active'));
 
     if (sport === 'home') {
-        homeView.style.display = 'block';
+        homeView.style.display   = 'block';
         detailView.style.display = 'none';
     } else {
-        homeView.style.display = 'none';
+        homeView.style.display   = 'none';
         detailView.style.display = 'block';
 
         const section = document.getElementById('section-' + sport);
-
-        if (section) {
-            section.classList.add('active');
-        }
+        if (section) section.classList.add('active');
     }
 
-    if (select) {
-        select.value = sport;
-    }
+    if (select) select.value = sport;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     showSport('home');
 });
 </script>
