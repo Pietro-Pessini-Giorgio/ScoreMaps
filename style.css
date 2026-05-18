@@ -41,7 +41,6 @@ body {
 }
 
 /* SFONDO CON LOGO */
-/* SFONDO CON LOGO */
 body::before {
     content: "";
     position: fixed;
@@ -813,6 +812,7 @@ nav {
         max-width: 220px;
     }
 }
+
 .user-greeting {
     color: var(--accent);
     background: rgba(245, 166, 35, .10);
@@ -824,6 +824,7 @@ nav {
     letter-spacing: .04em;
     white-space: nowrap;
 }
+
 .user-area {
     display: flex;
     align-items: center;
@@ -848,6 +849,7 @@ nav {
     border-color: #ff6b6b;
     background: rgba(255, 107, 107, .08);
 }
+
 /* HOME SENZA CLASSIFICA */
 
 .main.no-sidebar {
@@ -867,7 +869,9 @@ nav {
 .sport-section-detail.active {
     display: block;
 }
+
 /* PALLAVOLO MASCHILE */
+
 :root {
     --accent-vm: #00b4d8;
 }
@@ -892,6 +896,8 @@ nav {
 #section-volleym .rank-pos.top1 {
     color: var(--accent-vm);
 }
+
+/* RUGBY */
 
 :root {
     --accent-rugby: #4a7c59;
@@ -933,4 +939,106 @@ nav {
 
 #section-rugby .win-bar-fill {
     background: linear-gradient(90deg, var(--accent-rugby), var(--accent-rugby-light)) !important;
+}
+
+/* MODAL LOGIN */
+
+#login-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .65);
+    z-index: 99998;
+}
+
+#login-modal-overlay.is-visible {
+    display: block;
+    animation: fadeIn .2s ease;
+}
+
+#login-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: fit-content;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    max-width: 360px;
+    width: 90%;
+    z-index: 99999;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, .7);
+    font-family: 'DM Sans', sans-serif;
+}
+
+#login-modal.is-visible {
+    display: block;
+    animation: fadeUp .25s ease;
+}
+
+.modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: .06em;
+    margin-bottom: 10px;
+    color: var(--accent);
+}
+
+.modal-msg {
+    font-size: .9rem;
+    color: var(--muted);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.modal-cancel {
+    padding: .6rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    transition: all .2s;
+}
+
+.modal-cancel:hover {
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+.modal-login-link {
+    padding: .6rem 1.2rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 800;
+    font-size: .85rem;
+    text-decoration: none;
+    letter-spacing: .04em;
+    transition: transform .15s, box-shadow .2s;
+}
+
+.modal-login-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(245, 166, 35, .35);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

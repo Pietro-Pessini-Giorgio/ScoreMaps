@@ -218,7 +218,8 @@ function renderClassifica($classifica, $sport) {
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=53">
+    <link rel="stylesheet" href="style.css?v=54">
+
 </head>
 
 <body>
@@ -440,17 +441,6 @@ function renderClassifica($classifica, $sport) {
 
 </div>
 
-<!-- Modal login richiesto -->
-<div id="login-modal-overlay" onclick="closeLoginModal()"></div>
-<div id="login-modal">
-    <div class="modal-title">🏆 ScoreMaps</div>
-    <div class="modal-msg">Devi essere loggato per visualizzare i dettagli di uno sport.</div>
-    <div class="modal-actions">
-        <button class="modal-cancel" onclick="closeLoginModal()">Annulla</button>
-        <a href="login.php?dat=0" class="modal-login-link">Accedi</a>
-    </div>
-</div>
-
 <footer>
     &copy; <?= date('Y') ?> ScoreMaps
 </footer>
@@ -461,16 +451,6 @@ const isLoggedIn = <?= (isset($_SESSION['nome']) && isset($_SESSION['cognome']))
 </script>
 
 <script>
-function showLoginModal() {
-    document.getElementById('login-modal').style.display = 'block';
-    document.getElementById('login-modal-overlay').style.display = 'block';
-}
-
-function closeLoginModal() {
-    document.getElementById('login-modal').style.display = 'none';
-    document.getElementById('login-modal-overlay').style.display = 'none';
-}
-
 function showSport(sport) {
     const homeView       = document.getElementById('home-view');
     const detailView     = document.getElementById('sport-detail-view');
@@ -479,7 +459,7 @@ function showSport(sport) {
 
     // Se non loggato e si tenta di selezionare uno sport, blocca e avvisa
     if (sport !== 'home' && !isLoggedIn) {
-        showLoginModal();
+        alert('Devi essere loggato per visualizzare i dettagli di uno sport.');
         if (select) select.value = 'home';
         return;
     }
