@@ -1,50 +1,28 @@
 <?php
 session_start();
-
 include "db_connect.php";
 
-$email = $_POST["email"] ?? "";
-$pass = $_POST["pass"] ?? "";
+$email = trim($_POST["email"] ?? "");
+$pass  = trim($_POST["pass"]  ?? "");
+$pass  = md5($pass); // ⚠️ considera password_hash() in futuro
 
-
-    $sql = "SELECT nome FROM utenti
-    WHERE email LIKE '$email%' AND password LIKE '$pass%';";
-    $resul=$conn->query($sql);
-    if($resul->num_rows>0){
-        $row = $resul->fetch_assoc();
-        $nom=$row['nome'];
-        //setcookie("usern", $nom, time() + (86400 * 7), "/");
-        $url="http://localhost/ScoreMaps/ScoreMaps/homepage.php";
-        header('Location: '.$url);
-        die();
-    }else{
-        $url="http://localhost/ScoreMaps/ScoreMaps/login.php?dat=1";
-        header('Location: '.$url);
-    }
-    $conn->close();
-$email = trim($email);
-$pass = trim($pass);
-$pass = md5($pass);
-
-$sql = "SELECT , cognome 
-        FROM utenti
-        WHERE email = '$email' 
-        AND password = '$pass'";
-
-$resul = $conn->query($sql);
+// Prepared statement per evitare SQL injection
+$sql  = "SELECT nome, cognome FROM utenti WHERE email = ? AND password = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ss", $email, $pass);
+$stmt->execute();
+$resul = $stmt->get_result();
 
 if ($resul && $resul->num_rows > 0) {
     $row = $resul->fetch_assoc();
-
-    $_SESSION["nome"] = $row["nome"];
+    $_SESSION["nome"]    = $row["nome"];
     $_SESSION["cognome"] = $row["cognome"];
-
     header("Location: homepage.php");
-    exit;
 } else {
     header("Location: login.php?dat=1");
-    exit;
 }
 
+$stmt->close();
 $conn->close();
+exit;
 ?>
