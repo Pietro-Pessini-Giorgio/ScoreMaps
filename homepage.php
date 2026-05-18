@@ -244,7 +244,7 @@ function renderClassifica($classifica, $sport) {
             <?php if (isset($_SESSION["nome"]) && isset($_SESSION["cognome"])): ?>
                 <div class="user-area">
                     <div class="user-greeting">
-                        Ciao <?= htmlspecialchars($_SESSION["nome"]) ?> <?= htmlspecialchars($_SESSION["cognome"]) ?>!
+                        Ciao <?= htmlspecialchars($_SESSION["nome"]) ?> <?= htmlspecialchars($_SESSION["cognome"]) ?>
                     </div>
                     <a class="logout-btn" href="logout.php">Logout</a>
                 </div>

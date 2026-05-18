@@ -1,9 +1,9 @@
-<?php 
+<?php
+session_start();
 include "db_connect.php";
 
 $dat1 = $_GET['dat'] ?? 0;
 ?>
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -12,7 +12,6 @@ $dat1 = $_GET['dat'] ?? 0;
     <link rel="stylesheet" href="registration.css">
     <title>Login - ScoreMaps</title>
 </head>
-
 <body>
     <div class="page-wrapper">
         <a class="brand" href="homepage.php">Score<span>Maps</span></a>
@@ -26,20 +25,14 @@ $dat1 = $_GET['dat'] ?? 0;
                     <p>Email</p>
                     <input type="text" name="email" placeholder="mario@gmail.com" required>
                 </div>
-
                 <div class="form-group">
                     <p>Password</p>
                     <input type="password" name="pass" placeholder="viva_ilBasket123?" required>
                 </div>
-
                 <hr>
-
-                <?php
-                    if ($dat1 == 1) {
-                        echo '<div class="msg-error">Password o email errati — ricontrolla o registrati.</div>';
-                    }
-                ?>
-
+                <?php if ($dat1 == 1): ?>
+                    <div class="msg-error">Password o email errati — ricontrolla o registrati.</div>
+                <?php endif; ?>
                 <button type="submit">Accedi</button>
             </form>
 
