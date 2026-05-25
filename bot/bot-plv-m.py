@@ -17,18 +17,20 @@ api_key = os.environ.get("GEMINI_API_KEY")
 
 webbrowser.open("https://www.legavolley.it/risultati/?Anno=2025&IdCampionato=991")
 time.sleep(3)
-win32api.SetCursorPos((1911, 150))
-pyautogui.dragTo(1911, 295, duration=1, button='left')
+win32api.SetCursorPos((1911, 177))
+pyautogui.dragTo(1911, 306, duration=1, button='left')
 im1 = pyautogui.screenshot(region=(242, 214, 1368, 705))
 im1.save(r"./savedimage.png")
 
-with open("./savedimage.png", "rb") as f:
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+with open(os.path.join(BASE_DIR, "savedimage.png"), "rb") as f:
     image_data = base64.b64encode(f.read()).decode("utf-8")
 
-with open("./squadra.sql", "r", encoding="utf-8") as f:
+with open(os.path.join(BASE_DIR, "squadra.sql"), "r", encoding="utf-8") as f:
     squadra_sql = f.read()
 
-with open("./risultato.sql", "r", encoding="utf-8") as f:
+with open(os.path.join(BASE_DIR, "risultato.sql"), "r", encoding="utf-8") as f:
     risultato_sql = f.read()
 
 prompt = (
