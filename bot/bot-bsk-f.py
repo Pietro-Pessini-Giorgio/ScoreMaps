@@ -11,42 +11,29 @@ import os
 from os.path import join, dirname
 from dotenv import load_dotenv
 
-import pandas as pd
-import requests
-from io import StringIO
- 
-url = "https://www.legabasketfemminile.it/Calendar.aspx?ID=313"
- 
-session = requests.Session()
-session.headers.update({"User-Agent": "Mozilla/5.0 Chrome/124.0.0.0"})
- 
-html = session.get(url).text
-tabelle = pd.read_html(StringIO(html))  # StringIO risolve il problema di lettura
- 
-for i, df in enumerate(tabelle):
-    print(f"--- Tabella {i} ---")
-    print(df)
+dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+load_dotenv(dotenv_path)
+api_key = os.environ.get("GEMINI_API_KEY")
 
-from playwright.sync_api import sync_playwright
-import pandas as pd
-from io import StringIO
+webbrowser.open("https://www.rainews.it/dl/raiSport/speciali/statistiche/basket_a1_femminile/2026/indexRisultati.html")
+time.sleep(3)
+win32api.SetCursorPos((1909, 178))
+pyautogui.dragTo(1909, 388, duration=1, button='left')
+im1 = pyautogui.screenshot(region=(118, 299, 1661, 588))
+im1.save(r"./savedimage.png")
 
-with sync_playwright() as p:
-    browser = p.chromium.launch()
-    page = browser.new_page()
-    page.goto("https://www.legabasketfemminile.it/Calendar.aspx?ID=313")
-    page.wait_for_timeout(3000)  # aspetta che il JS carichi i dati
-    html = page.content()
-    browser.close()
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-tabelle = pd.read_html(StringIO(html))
-for i, df in enumerate(tabelle):
-    print(f"--- Tabella {i} ---")
-    print(df)
+with open(os.path.join(BASE_DIR, "savedimage.png"), "rb") as f:
+    image_data = base64.b64encode(f.read()).decode("utf-8")
 
-print("File salvato: apri pagina.html nel browser o in un editor")
+with open(os.path.join(BASE_DIR, "squadra.sql"), "r", encoding="utf-8") as f:
+    squadra_sql = f.read()
 
-"""prompt = (
+with open(os.path.join(BASE_DIR, "risultato.sql"), "r", encoding="utf-8") as f:
+    risultato_sql = f.read()
+
+prompt = (
     "You are a SQL expert. I will give you:\n"
     "1. A screenshot containing match/game data in tabular form\n"
     "2. Two SQL table definitions with their existing data (squadra and risultato)\n\n"
@@ -84,4 +71,4 @@ response = client.models.generate_content(
         }
     ]
 )
-print(response.text)"""
+print(response.text)

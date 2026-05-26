@@ -15,7 +15,7 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
 load_dotenv(dotenv_path)
 api_key = os.environ.get("GEMINI_API_KEY")
 
-webbrowser.open("https://www.legabasket.it/calendario?selectedTeamId=all&selectedTab=schedule&year=2025&championshipTypeId=4&phaseToShow=all&matchDay=18")
+webbrowser.open("https://www.legabasket.it/calendario?selectedTeamId=all&selectedTab=schedule&year=2025&championshipTypeId=4&phaseToShow=all&matchDay=29")
 time.sleep(3)
 win32api.SetCursorPos((1919, 205))
 pyautogui.dragTo(1919, 283, duration=1, button='left')
