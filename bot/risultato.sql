@@ -39,9 +39,8 @@ CREATE TABLE `risultato` (
 --
 -- Dump dei dati per la tabella `risultato`
 --
-
-INSERT INTO `risultato` (`id`, `id_squadra1`, `id_squadra2`, `punteggio_sq1`, `punteggio_sq2`, `vincitore`) VALUES
-(1, 2, 5, 71, 74, 5),
+-- risultato
+INSERT INTO risultato (id, id_squadra1, id_squadra2, punteggio_sq1, punteggio_sq2, vincitore) VALUES (1, 2, 5, 71, 74, 5),
 (2, 7, 20, 76, 71, 7),
 (3, 13, 3, 100, 102, 3),
 (4, 8, 21, 109, 69, 8),
@@ -750,9 +749,15 @@ INSERT INTO `risultato` (`id`, `id_squadra1`, `id_squadra2`, `punteggio_sq1`, `p
 (707, 66, 67, 26, 20, 66),
 (708, 63, 68, 55, 20, 63),
 (709, 61, 59, 43, 31, 61),
-(710, 65, 64, 7, 38, 64);
-
---
+(710, 65, 64, 7, 38, 64),
+(711, 20, 21, 95, 83, 20),
+(712, 11, 8, 84, 74, 11),
+(713, 4, 2, 85, 90, 2),
+(714, 9, 16, 84, 75, 9),
+(715, 7, 5, 88, 69, 7),
+(716, 1, 14, 95, 81, 1),
+(717, 3, 13, 90, 99, 13),
+--\n
 -- Indici per le tabelle scaricate
 --
 
@@ -786,7 +791,7 @@ ALTER TABLE `risultato`
   ADD CONSTRAINT `risultato_ibfk_1` FOREIGN KEY (`id_squadra1`) REFERENCES `squadra` (`id`),
   ADD CONSTRAINT `risultato_ibfk_2` FOREIGN KEY (`id_squadra2`) REFERENCES `squadra` (`id`),
   ADD CONSTRAINT `risultato_ibfk_3` FOREIGN KEY (`vincitore`) REFERENCES `squadra` (`id`);
-COMMIT;
+  COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
