@@ -330,6 +330,11 @@ ALTER TABLE `risultato`
         <div class="header">
             <i class="ti ti-shield-lock"></i>
             <h1>Pannello admin</h1>
+
+            <a href="homepage.php" class="home-link" style="margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 13px; color: #666; text-decoration: none;">
+                <i class="ti ti-home"></i>
+                Homepage
+            </a>
         </div>
 
         <form method="POST">
