@@ -30,9 +30,12 @@ $dat1 = $_GET['dat'] ?? 0;
                     <input type="password" name="pass" placeholder="viva_ilBasket123?" required>
                 </div>
                 <hr>
-                <?php if ($dat1 == 1): ?>
-                    <div class="msg-error">Password o email errati — ricontrolla o registrati.</div>
-                <?php endif; ?>
+                <?php 
+                    if ($dat1 == 1){
+                        echo '<div class="msg-error">Password o email errati — ricontrolla o registrati.</div>
+                        <div class="msg-error">Password o email errati — ricontrolla o registrati.</div>';
+                    }
+                ?>
                 <button type="submit">Accedi</button>
             </form>
 
