@@ -1,7 +1,22 @@
 <?php
 session_start();
-
 include("db_connect.php");
+
+// Controlla se l'utente loggato è admin
+$isAdmin = false;
+if (isset($_SESSION['nome']) && isset($_SESSION['cognome'])) {
+    $email = $_SESSION['email'] ?? '';
+    if (!empty($email)) {
+        $stmt = $conn->prepare("SELECT admin FROM utenti WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        if ($row = $res->fetch_assoc()) {
+            $isAdmin = (bool)$row['admin'];
+        }
+        $stmt->close();
+    }
+}
 
 // Funzione: ultimi risultati per sport
 function getUltimi($conn, $id_sport, $limit = 5) {
@@ -23,13 +38,11 @@ function getUltimi($conn, $id_sport, $limit = 5) {
     ");
 
     $rows = [];
-
     if ($res) {
         while ($row = $res->fetch_assoc()) {
             $rows[] = $row;
         }
     }
-
     return $rows;
 }
 
@@ -53,22 +66,20 @@ function getClassifica($conn, $id_sport) {
     ");
 
     $rows = [];
-
     if ($res) {
         while ($row = $res->fetch_assoc()) {
             $rows[] = $row;
         }
     }
-
     return $rows;
 }
 
 // Homepage: ultimi 5 risultati per ogni sport
-$ultimi_basket    = getUltimi($conn, 1, 5);
-$ultimi_volley    = getUltimi($conn, 2, 5);
-$ultimi_basket_f  = getUltimi($conn, 3, 5);
-$ultimi_volley_m  = getUltimi($conn, 4, 5);
-$ultimi_rugby     = getUltimi($conn, 5, 5);
+$ultimi_basket   = getUltimi($conn, 1, 5);
+$ultimi_volley   = getUltimi($conn, 2, 5);
+$ultimi_basket_f = getUltimi($conn, 3, 5);
+$ultimi_volley_m = getUltimi($conn, 4, 5);
+$ultimi_rugby    = getUltimi($conn, 5, 5);
 
 // Sport selezionato: ultime 10 partite
 $ultimi10_basket   = getUltimi($conn, 1, 10);
@@ -105,7 +116,6 @@ function renderRisultati($ultimi, $sport) {
                 <?php else: ?>
                     <div class="team-logo-placeholder"><?= $placeholder ?></div>
                 <?php endif; ?>
-
                 <div>
                     <div class="team-name"><?= htmlspecialchars($m['nome1']) ?></div>
                     <?php if ($win1): ?>
@@ -119,14 +129,11 @@ function renderRisultati($ultimi, $sport) {
                     <span class="score-s1 <?= $win1 ? 'winner' : '' ?>">
                         <?= htmlspecialchars($m['punteggio_sq1']) ?>
                     </span>
-
                     <span class="score-sep">–</span>
-
                     <span class="score-s2 <?= $win2 ? 'winner' : '' ?>">
                         <?= htmlspecialchars($m['punteggio_sq2']) ?>
                     </span>
                 </div>
-
                 <div class="match-id"><?= $label ?></div>
             </div>
 
@@ -136,7 +143,6 @@ function renderRisultati($ultimi, $sport) {
                 <?php else: ?>
                     <div class="team-logo-placeholder"><?= $placeholder ?></div>
                 <?php endif; ?>
-
                 <div>
                     <div class="team-name"><?= htmlspecialchars($m['nome2']) ?></div>
                     <?php if ($win2): ?>
@@ -219,7 +225,6 @@ function renderClassifica($classifica, $sport) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=54">
-
 </head>
 
 <body>
@@ -246,6 +251,11 @@ function renderClassifica($classifica, $sport) {
                     <div class="user-greeting">
                         Ciao <?= htmlspecialchars($_SESSION["nome"]) ?> <?= htmlspecialchars($_SESSION["cognome"]) ?>
                     </div>
+                    <?php if ($isAdmin): ?>
+                        <button onclick="window.location.href='admin.php'" style="display:inline-flex;align-items:center;gap:5px;background:#185FA5;color:#ffffff;border:none;border-radius:999px;padding:.65rem 1.2rem;font-size:.85rem;font-weight:800;letter-spacing:.04em;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.15s;">
+                            ⚙️ Admin
+                        </button>
+                    <?php endif; ?>
                     <a class="logout-btn" href="logout.php">Logout</a>
                 </div>
             <?php else: ?>
@@ -457,7 +467,6 @@ function showSport(sport) {
     const detailSections = document.querySelectorAll('.sport-section-detail');
     const select         = document.querySelector('.sport-select');
 
-    // Se non loggato e si tenta di selezionare uno sport, blocca e avvisa
     if (sport !== 'home' && !isLoggedIn) {
         alert('Devi essere loggato per visualizzare i dettagli di uno sport.');
         if (select) select.value = 'home';
