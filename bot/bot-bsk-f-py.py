@@ -15,12 +15,12 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
 load_dotenv(dotenv_path)
 api_key = os.environ.get("GEMINI_API_KEY")
 
-webbrowser.open("https://www.legabasket.it/calendario?selectedTeamId=all&selectedTab=schedule&year=2025&championshipTypeId=4&phaseToShow=all&matchDay=28")
+webbrowser.open("https://www.rainews.it/dl/raiSport/speciali/statistiche/basket_a1_femminile/2026/indexRisultati.html")
 time.sleep(3)
-win32api.SetCursorPos((1919, 205))
-pyautogui.dragTo(1919, 283, duration=1, button='left')
-im1 = pyautogui.screenshot(region=(174, 307, 780, 675))
-im1.save(r"./bot/savedimage.png")
+win32api.SetCursorPos((1909, 178))
+pyautogui.dragTo(1909, 388, duration=1, button='left')
+im1 = pyautogui.screenshot(region=(118, 299, 1661, 588))
+im1.save(r"./savedimage.png")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 

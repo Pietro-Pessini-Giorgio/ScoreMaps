@@ -20,7 +20,7 @@ time.sleep(3)
 win32api.SetCursorPos((1909, 178))
 pyautogui.dragTo(1909, 388, duration=1, button='left')
 im1 = pyautogui.screenshot(region=(118, 299, 1661, 588))
-im1.save(r"./savedimage.png")
+im1.save(r"./bot/savedimage.png")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
