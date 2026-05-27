@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 04, 2026 alle 11:43
+-- Creato il: Mag 27, 2026 alle 09:31
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -71,14 +71,14 @@ INSERT INTO `squadra` (`id`, `nome`, `logo`, `id_sport`) VALUES
 (36, 'Famila Wuber Schio', 'img/schio.png', 3),
 (37, 'Umana Reyer Venezia', 'img/venezia.png', 3),
 (38, 'La Molisana Magnolia Campobasso', 'img/campobasso.png', 3),
-(39, 'Autosped G BCC Derthona', 'img/tortona.png', 3),
+(39, 'Autosped G Bcc Derthona', 'img/tortona.png', 3),
 (40, 'Geas Sesto San Giovanni', 'img/geas.png', 3),
 (41, 'People Strategy Panthers Roseto', 'img/roseto.png', 3),
-(42, 'Alama San Martino di Lupari', 'img/lupari.png', 3),
+(42, 'Alama San Martino Di Lupari', 'img/lupari.png', 3),
 (43, 'Logiman Broni', 'img/broni.png', 3),
-(44, 'Dinamo Banco di Sardegna Women', 'img/sassari.png', 3),
+(44, 'Dinamo Banco Di Sardegna Women', 'img/sassari.png', 3),
 (45, 'RMB Brixia Basket', 'img/brixia.png', 3),
-(46, 'O.ME.P.S. Battipaglia', 'img/battipaglia.png', 3),
+(46, 'O.Me.P.S. Battipaglia', 'img/battipaglia.png', 3),
 (47, 'Allianz Milano', 'img/allianz_milano.png', 4),
 (48, 'Cisterna Volley', 'img/cisterna.png', 4),
 (49, 'Cucine Lube Civitanova', 'img/civitanova.png', 4),
@@ -90,7 +90,17 @@ INSERT INTO `squadra` (`id`, `nome`, `logo`, `id_sport`) VALUES
 (55, 'Sonepar Padova', 'img/padova.png', 4),
 (56, 'Valsa Group Modena', 'img/modena.png', 4),
 (57, 'Vero Volley Monza', 'img/monza.png', 4),
-(58, 'Yuasa Battery Grottazzolina', 'img/grottazzolina.png', 4);
+(58, 'Yuasa Battery Grottazzolina', 'img/grottazzolina.png', 4),
+(59, 'C.u.s. Genova Asd', 'img/cus_genova.png', 5),
+(60, 'Asd Unione Monferrato Rugby', 'img/monferrato.png', 5),
+(61, 'Asd Amatori Rugby Capoterra', 'img/capoterra.png', 5),
+(62, 'Rugby Sondrio Soc.coop.dil. Arl', 'img/sondrio.png', 5),
+(63, 'Asd Rugby Cernusco', 'img/cernusco.png', 5),
+(64, 'Cus Milano Rugby Asd', 'img/cus_milano.png', 5),
+(65, 'Asd Rugby San Mauro', 'img/san_mauro.png', 5),
+(66, 'Ivrea Rugby Club Asd', 'img/ivrea.png', 5),
+(67, 'Rugby Rho Asd', 'img/rho.png', 5),
+(68, 'Asd Rugby Varese', 'img/rugby_varese.png', 5);
 
 --
 -- Indici per le tabelle scaricate
@@ -104,6 +114,16 @@ ALTER TABLE `squadra`
   ADD KEY `id_sport` (`id_sport`);
 
 --
+-- AUTO_INCREMENT per le tabelle scaricate
+--
+
+--
+-- AUTO_INCREMENT per la tabella `squadra`
+--
+ALTER TABLE `squadra`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
 -- Limiti per le tabelle scaricate
 --
 
@@ -111,7 +131,7 @@ ALTER TABLE `squadra`
 -- Limiti per la tabella `squadra`
 --
 ALTER TABLE `squadra`
-  ADD CONSTRAINT `squadra_ibfk_1` FOREIGN KEY (`id_sport`) REFERENCES `sport` (`id`);
+  ADD CONSTRAINT `FK_squadra_sport` FOREIGN KEY (`id_sport`) REFERENCES `sport` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
