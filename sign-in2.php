@@ -22,7 +22,7 @@
 
             if($conn->query($sql)===TRUE){
                 //setcookie("usern", $nom, time() + (86400 * 7), "/");
-                $url="http://localhost/ScoreMaps/ScoreMaps/homepage.php";
+                $url="http://localhost/ScoreMaps/ScoreMaps/login.php";
                 header('Location: '.$url);
                 die();
             }else{
