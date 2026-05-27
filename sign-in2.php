@@ -21,7 +21,6 @@
             VALUES ('$nom', '$cogn', '$pass',0,'$email')";
 
             if($conn->query($sql)===TRUE){
-                //setcookie("usern", $nom, time() + (86400 * 7), "/");
                 $url="http://localhost/ScoreMaps/ScoreMaps/login.php";
                 header('Location: '.$url);
                 die();

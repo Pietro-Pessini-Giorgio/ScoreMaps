@@ -2,19 +2,14 @@
 session_start();
 include("db_connect.php");
 
-// Controlla se l'utente loggato è admin
 $isAdmin = false;
 if (isset($_SESSION['nome']) && isset($_SESSION['cognome'])) {
     $email = $_SESSION['email'] ?? '';
     if (!empty($email)) {
-        $stmt = $conn->prepare("SELECT admin FROM utenti WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $res = $stmt->get_result();
+        $res = $conn->query("SELECT admin FROM utenti WHERE email = '$email'");
         if ($row = $res->fetch_assoc()) {
             $isAdmin = (bool)$row['admin'];
         }
-        $stmt->close();
     }
 }
 
